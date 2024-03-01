@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://csp3hdq2ndqbu"]
+
+[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_17748"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ortaq"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hsisq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 2.38419e-07)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("1_17748")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ortaq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
