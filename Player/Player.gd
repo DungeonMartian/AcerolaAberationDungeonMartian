@@ -9,6 +9,10 @@ var screenShake : bool = false
 
 var mousePos :Vector2
 @onready var camera = $Camera2D
+@onready var horn = $bewbewbwewbew
+
+func _ready():
+	randomize()
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -17,7 +21,9 @@ func get_input():
 	
 	if Input.is_action_pressed("reload"):
 		get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
-
+	if Input.is_action_just_pressed("airHorne"):
+		horn.play()
+		Shake(.1)
 
 func _physics_process(delta):
 	if !dying:
@@ -25,7 +31,9 @@ func _physics_process(delta):
 		if screenShake:
 			camera.offset.x = randf_range(-5,5)
 			camera.offset.y = randf_range(-5,5)
-	
+
+			
+			
 	camera.global_position = lerp(global_position, mousePos, delta*3)
 
 	
@@ -42,3 +50,5 @@ func Shake(value):
 		screenShake = true
 		await get_tree().create_timer(value).timeout
 		screenShake = false
+		camera.offset.x = 0
+		camera.offset.y = 0

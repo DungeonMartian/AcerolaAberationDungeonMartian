@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=5 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_17748"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
+[ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ortaq"]
 
@@ -17,3 +18,7 @@ texture = ExtResource("1_17748")
 shape = SubResource("RectangleShape2D_ortaq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6si4i")
+volume_db = -11.702
