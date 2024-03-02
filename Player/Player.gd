@@ -11,8 +11,11 @@ var mousePos :Vector2
 @onready var camera = $Camera2D
 @onready var horn = $bewbewbwewbew
 
+var upgradesHas = InventoryHandler.upgrades
+
 func _ready():
 	randomize()
+	getUpgrades()
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -52,3 +55,7 @@ func Shake(value):
 		screenShake = false
 		camera.offset.x = 0
 		camera.offset.y = 0
+
+func getUpgrades():
+	
+	pass

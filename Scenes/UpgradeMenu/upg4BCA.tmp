@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ytcyyqmwsqvi"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/upgradeMenu.gd" id="1_svr0p"]
+[ext_resource type="PackedScene" uid="uid://ehwd2wv6y3nd" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/UpgradePanel.tscn" id="2_om5cx"]
+
+[node name="Upgrades" type="Node2D"]
+script = ExtResource("1_svr0p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="UpgradePanel" parent="." instance=ExtResource("2_om5cx")]
+position = Vector2(72, 120)
+
+[node name="UpgradePanel2" parent="." instance=ExtResource("2_om5cx")]
+position = Vector2(136, 120)
+
+[node name="UpgradePanel3" parent="." instance=ExtResource("2_om5cx")]
+position = Vector2(208, 120)
+
+[node name="PanelHolder" type="Node2D" parent="."]

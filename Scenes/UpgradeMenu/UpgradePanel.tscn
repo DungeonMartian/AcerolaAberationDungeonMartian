@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ehwd2wv6y3nd"]
+
+[ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="1_5kf71"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/UpgradePanel.gd" id="1_73qlj"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(37, 37)
+scale = Vector2(0.00522647, 0.0158382)
+texture = ExtResource("1_5kf71")
+script = ExtResource("1_73qlj")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -1722.0
+offset_top = -947.079
+offset_right = -1714.0
+offset_bottom = -939.079
+scale = Vector2(431.381, 236.259)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -1530.67
+offset_top = -441.97
+offset_right = -1419.67
+offset_bottom = -372.97
+scale = Vector2(18.2936, 9.05949)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
