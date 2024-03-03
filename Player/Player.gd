@@ -1,25 +1,63 @@
 extends CharacterBody2D
 
+#stats
+var time : float
+var speed: float = 15.0 
+var maxSpeed: float = 150 
+var modSpeed : float
+var modMaxSpeed : float
+var armour :float = 0
+var damage : float = 1
+var poisonDamage : float = 0
 
-var speed = 15.0
-var maxSpeed = 150
-
+#states
 var dying : bool = false
 var screenShake : bool = false
-
+var spinning : bool = false
+var decayMod : float = 7
 var mousePos :Vector2
+
+#preloads
 @onready var camera = $Camera2D
 @onready var horn = $bewbewbwewbew
+@onready var light = $PointLight2D
+@onready var sprite = $Sprite2D
+@onready var radulaPivot = $radulaPivot
+@onready var toothPoint = $radulaPivot/ToothPoint
+@onready var toothPoint2 = $radulaPivot/ToothPoint2
+
+#upgrade unlocks
+var frogLegs : bool = false
+var poisonTrail : bool = false
+var contactPoison : bool = false
+var toothRotate : bool = true
+var hasRadula : bool = true
+var hasExtra : bool = true
+@onready var slimeTime = $slimeTimer
+@onready var slimeTrail = preload("res://AcerolaAberationDungeonMartian/Player/playerSlime.tscn")
+@onready var radula = preload("res://AcerolaAberationDungeonMartian/Player/radula.tscn")
+
 
 var upgradesHas = InventoryHandler.upgrades
+
 
 func _ready():
 	randomize()
 	getUpgrades()
+	modSpeed = speed
+	modMaxSpeed = maxSpeed 
+	if poisonTrail:
+		slimeTime.start()
+	if hasRadula:
+		var tooth = radula.instantiate()
+		toothPoint.add_child(tooth)
+		if hasExtra:
+			var tooth2 = radula.instantiate()
+			toothPoint2.add_child(tooth2)
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity += input_direction * speed
+	velocity += input_direction * modSpeed
 	mousePos = get_viewport().get_mouse_position()*3
 	
 	if Input.is_action_pressed("reload"):
@@ -29,24 +67,41 @@ func get_input():
 		Shake(.1)
 
 func _physics_process(delta):
+	time += delta*7
 	if !dying:
+		
 		get_input()
 		if screenShake:
 			camera.offset.x = randf_range(-5,5)
 			camera.offset.y = randf_range(-5,5)
-
-			
+		if spinning:
+			sprite.rotation += rad_to_deg(0.004)
+	
+	if frogLegs:
+		modSpeed = speed *(get_sine()+1)
+		modMaxSpeed = maxSpeed *(get_sine()+1)
+	
+	if toothRotate:
+		radulaPivot.rotation += rad_to_deg(0.0005)
 			
 	camera.global_position = lerp(global_position, mousePos, delta*3)
 
 	
 			
-	velocity.y = clamp(velocity.y, -maxSpeed, maxSpeed)
-	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
-	velocity = lerp(velocity, Vector2(0,0), delta*7)
+	velocity.y = clamp(velocity.y, -modMaxSpeed, modMaxSpeed)
+	velocity.x = clamp(velocity.x, -modMaxSpeed, modMaxSpeed)
+	velocity = lerp(velocity, Vector2(0,0), delta*decayMod)
+	velocity.normalized()
 	move_and_slide()
 
-
+func spin():
+	Shake(2)
+	spinning = true
+	speed = 0
+	maxSpeed = 0
+	modSpeed = 0
+	modMaxSpeed = 0
+	
 
 func Shake(value):
 	if ! dying:
@@ -57,5 +112,78 @@ func Shake(value):
 		camera.offset.y = 0
 
 func getUpgrades():
+	#Tentacles = 0, Haptic = 0,  = 0, Radula = 0, Arachnopod = 0, Aposematism = 0
+
+	if upgradesHas.get("Tentacles" ) ==1 :
+		pass
+	if upgradesHas.get("SharpTentacles" ) ==1 :
+		damage += 2
+	if upgradesHas.get("LongTentacles" ) ==1 :
+		pass
+		
+	if upgradesHas.get("Haptic" ) ==1 :
+		light.scale = Vector2(0.7,0.7)  
+	if upgradesHas.get("OccularDegeneration" ) ==1 :
+		light.scale = Vector2(0.4,0.4)  
+	if upgradesHas.get("Omniscience" ) ==1 :
+		pass
+		
+	if upgradesHas.get("Pulmonatization" ) ==1 :
+		set_scale(Vector2(1.2,1.2))
+		armour += 1
+		speed -= 5
+		maxSpeed -= 15
+	if upgradesHas.get("PoisonTrail" ) ==1 :
+		poisonTrail = true
+		poisonDamage +=1
+	if upgradesHas.get("ExoSkeleton" ) ==1 :
+		set_scale(Vector2(1.3,1.3))
+		armour += 1
+		speed -= 5
+		maxSpeed -= 15
+		
+	if upgradesHas.get("Radula" ) ==1 :
+		toothRotate = true
+		hasRadula = true
+		
+	if upgradesHas.get("NeuroToxinPoison" ) ==1 :
+		poisonDamage +=2
+	if upgradesHas.get("ExtraTooth" ) ==1 :
+		hasExtra = true
+
+	if upgradesHas.get("Arachnopod" ) ==1 :
+		speed +=5
+		maxSpeed +=20
+	if upgradesHas.get("AllTerrain" ) ==1 :
+		pass
+	if upgradesHas.get("ApexPredator" ) ==1 :
+		damage +=1
+
+	if upgradesHas.get("Aposematism" ) ==1 :
+		poisonDamage +=1
+		set_scale(Vector2(.8,.8))
+	if upgradesHas.get("FroggingFast" ) ==1 :
+		speed +=1
+		maxSpeed +=5
+		frogLegs = true
+	if upgradesHas.get("Toxic" ) ==1 :
+		poisonDamage += 2
+
 	
-	pass
+
+
+
+
+		
+		
+func get_sine():
+	return sin(time*1) *1
+
+		
+
+
+func _on_slime_timer_timeout():
+	var s = slimeTrail.instantiate()
+	get_parent().add_child(s)
+	s.global_position = global_position
+	s.damage = poisonDamage

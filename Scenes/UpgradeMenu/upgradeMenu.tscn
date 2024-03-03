@@ -12,10 +12,10 @@ anchor_mode = 0
 [node name="PanelHolder" type="Node2D" parent="."]
 
 [node name="UpgradePanel" parent="PanelHolder" instance=ExtResource("2_om5cx")]
-position = Vector2(72, 120)
+position = Vector2(96, 120)
 
 [node name="UpgradePanel2" parent="PanelHolder" instance=ExtResource("2_om5cx")]
-position = Vector2(136, 120)
+position = Vector2(256, 120)
 
 [node name="UpgradePanel3" parent="PanelHolder" instance=ExtResource("2_om5cx")]
-position = Vector2(208, 120)
+position = Vector2(416, 120)

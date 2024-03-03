@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=6 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_17748"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_kxq4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ortaq"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 script = ExtResource("1_hsisq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.501961, 0.364706, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0.0784314, 0, 1)
+texture = ExtResource("3_kxq4c")
+texture_scale = 1.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4.76837e-07, 2.38419e-07)
@@ -22,3 +31,16 @@ shape = SubResource("RectangleShape2D_ortaq")
 [node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6si4i")
 volume_db = -11.702
+
+[node name="slimeTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="radulaPivot" type="Node2D" parent="."]
+
+[node name="ToothPoint" type="Node2D" parent="radulaPivot"]
+position = Vector2(11, 0)
+
+[node name="ToothPoint2" type="Node2D" parent="radulaPivot"]
+position = Vector2(-11, 0)
+
+[connection signal="timeout" from="slimeTimer" to="." method="_on_slime_timer_timeout"]

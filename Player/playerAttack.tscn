@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://da475euenj76a"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/playerAttack.gd" id="1_cx51g"]
+[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_nkgqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjtbh"]
+size = Vector2(128, 128)
+
+[node name="PlayerAttack" type="Area2D"]
+script = ExtResource("1_cx51g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fjtbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nkgqt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

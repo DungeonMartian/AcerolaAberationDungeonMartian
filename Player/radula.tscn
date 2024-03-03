@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://t56s3k7j0adu"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/radula.gd" id="1_fykj6"]
+[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_ksnk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw6sv"]
+size = Vector2(28, 105)
+
+[node name="Radula" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_fykj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.21875, 0.820313)
+texture = ExtResource("1_ksnk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_qw6sv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

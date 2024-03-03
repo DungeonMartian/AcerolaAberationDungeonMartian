@@ -5,7 +5,7 @@
 
 [node name="Sprite2D" type="Sprite2D"]
 position = Vector2(37, 37)
-scale = Vector2(0.00522647, 0.0158382)
+scale = Vector2(0.0166261, 0.0433579)
 texture = ExtResource("1_5kf71")
 script = ExtResource("1_73qlj")
 
@@ -25,4 +25,40 @@ scale = Vector2(18.2936, 9.05949)
 theme_override_font_sizes/font_size = 50
 text = "TEST"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 2296.0
+offset_top = -505.108
+offset_right = 5487.0
+offset_bottom = 176.892
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+z_index = 2
+offset_left = 2225.42
+offset_top = -899.49
+offset_right = 2265.42
+offset_bottom = -859.49
+scale = Vector2(3.44616, 1.47305)
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -93.7975
+offset_right = -93.7975
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(84.1287, 77.3767)
+color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[node name="Helper" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 3191.0
+offset_bottom = 682.0
+theme_override_font_sizes/font_size = 500
+text = "Lorem Ipsum"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

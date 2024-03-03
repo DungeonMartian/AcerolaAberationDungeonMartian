@@ -1,6 +1,7 @@
 extends Node2D
 
 var possibleUpgrades = []
+var chosenUpgrade 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +12,7 @@ func _ready():
 			possibleUpgrades.append (key)
 		
 	for g in $PanelHolder.get_children():
-		print("hello")
+		#print("hello")
 		var randUpgrade =randi_range(0, possibleUpgrades.size()-1)
 		g.setUpgrade(possibleUpgrades[randUpgrade]) # possibleUpgrades.pick_random()
 		possibleUpgrades.remove_at(randUpgrade)
@@ -20,6 +21,4 @@ func _ready():
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
