@@ -4,26 +4,42 @@
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/UpgradePanel.gd" id="1_73qlj"]
 
 [node name="Sprite2D" type="Sprite2D"]
-position = Vector2(37, 37)
-scale = Vector2(0.0166261, 0.0433579)
+position = Vector2(43, 14)
+scale = Vector2(0.0277102, 0.0167651)
 texture = ExtResource("1_5kf71")
 script = ExtResource("1_73qlj")
 
-[node name="Button" type="Button" parent="."]
-offset_left = -1722.0
-offset_top = -947.079
-offset_right = -1714.0
-offset_bottom = -939.079
-scale = Vector2(431.381, 236.259)
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = -1600.0
+offset_bottom = -900.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-offset_left = -1530.67
-offset_top = -441.97
-offset_right = -1419.67
-offset_bottom = -372.97
-scale = Vector2(18.2936, 9.05949)
-theme_override_font_sizes/font_size = 50
-text = "TEST"
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 300
+text = "testest 
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -1587.86
+offset_top = -954.366
+offset_right = -1579.86
+offset_bottom = -946.366
+scale = Vector2(400.387, 242.838)
+theme_override_font_sizes/font_size = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 2296.0
@@ -34,30 +50,38 @@ offset_bottom = 176.892
 [node name="Panel" type="Panel" parent="."]
 visible = false
 z_index = 2
-offset_left = 2225.42
-offset_top = -899.49
-offset_right = 2265.42
-offset_bottom = -859.49
-scale = Vector2(3.44616, 1.47305)
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2778.76
+offset_top = -2803.45
+offset_right = 2778.76
+offset_bottom = -2803.45
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.59219, 7.78953)
+size_flags_vertical = 6
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -93.7975
-offset_right = -93.7975
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(84.1287, 77.3767)
+scale = Vector2(233.161, 234.351)
 color = Color(0.207843, 0.207843, 0.207843, 1)
 
 [node name="Helper" type="Label" parent="Panel"]
 layout_mode = 0
 offset_right = 3191.0
 offset_bottom = 682.0
-theme_override_font_sizes/font_size = 500
+scale = Vector2(1.00684, 0.49963)
+theme_override_font_sizes/font_size = 300
 text = "Lorem Ipsum"
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

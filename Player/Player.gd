@@ -71,10 +71,10 @@ func get_input():
 	#mousePos = get_viewport().get_mouse_position()*3
 	mousePos = get_global_mouse_position()
 	
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_just_pressed("attack"):
 		if canAttack:
 			var at = smallAttack.instantiate()
-			
+			Shake(.1)
 			add_child(at)
 			at.look_at(mousePos)
 			attackTimer.start()
@@ -97,9 +97,13 @@ func _physics_process(delta):
 		if velocity.x < 0:
 			if !sprite.flip_h == true:
 				sprite.flip_h = true
+				for child in $Sprite2D/Node2D.get_children():
+					child.flip_h = true
 		elif velocity.x > 0:
 			if !sprite.flip_h == false:
 				sprite.flip_h = false
+				for child in $Sprite2D/Node2D.get_children():
+					child.flip_h = false
 				
 	time += delta*7
 	if !dying:
@@ -146,17 +150,18 @@ func Shake(value):
 func getUpgrades():
 	#Tentacles = 0, Haptic = 0,  = 0, Radula = 0, Arachnopod = 0, Aposematism = 0
 
-	if upgradesHas.get("Tentacles" ) ==1 :
+	if upgradesHas.get("Tentaclular Brachium" ) ==1 :
 		$Sprite2D/Node2D/Tentacles.visible = true
 		pass
-	if upgradesHas.get("SharpTentacles" ) ==1 :
+	if upgradesHas.get("Sharp Tentacles" ) ==1 :
 		damage += 2
-	if upgradesHas.get("LongTentacles" ) ==1 :
+	if upgradesHas.get("Long Tentacles" ) ==1 :
 		pass
 		
-	if upgradesHas.get("Haptic" ) ==1 :
+	if upgradesHas.get("Haptic Perception" ) ==1 :
+		$Sprite2D/Node2D/Haptic.visible = true
 		light.scale = Vector2(0.7,0.7)  
-	if upgradesHas.get("OccularDegeneration" ) ==1 :
+	if upgradesHas.get("Occular Degeneration" ) ==1 :
 		light.scale = Vector2(0.4,0.4)  
 	if upgradesHas.get("Omniscience" ) ==1 :
 		pass
@@ -167,7 +172,7 @@ func getUpgrades():
 		speed -= 5
 		maxSpeed -= 15
 		$Sprite2D/Node2D/Pulmonatization.visible = true
-	if upgradesHas.get("PoisonTrail" ) ==1 :
+	if upgradesHas.get("Mucopolysaccharide" ) ==1 :
 		poisonTrail = true
 		poisonDamage +=1
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
@@ -179,25 +184,25 @@ func getUpgrades():
 	if upgradesHas.get("Radula" ) ==1 :
 		hasRadula = true
 		
-	if upgradesHas.get("NeuroToxinPoison" ) ==1 :
+	if upgradesHas.get("Neurotoxin Poison" ) ==1 :
 		poisonDamage +=2
-	if upgradesHas.get("ExtraTooth" ) ==1 :
+	if upgradesHas.get("Extra Tooth" ) ==1 :
 		hasExtra = true
 
 	if upgradesHas.get("Arachnopod" ) ==1 :
 		speed +=2
 		maxSpeed +=5
 		$Sprite2D/Node2D/Arachnopod.visible = true
-	if upgradesHas.get("AllTerrain" ) ==1 :
+	if upgradesHas.get("All Terrain" ) ==1 :
 		pass
-	if upgradesHas.get("ApexPredator" ) ==1 :
+	if upgradesHas.get("Apex Predator" ) ==1 :
 		damage +=1
 
 	if upgradesHas.get("Aposematism" ) ==1 :
 		poisonDamage +=1
 		set_scale(Vector2(.8,.8))
 		$Sprite2D/Node2D/Aposematism.visible = true
-	if upgradesHas.get("FroggingFast" ) ==1 :
+	if upgradesHas.get("Bufonidaemorphism" ) ==1 :
 		speed +=5
 		maxSpeed +=15
 		frogLegs = true
