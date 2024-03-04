@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c875nkqkp0byg"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.gd" id="1_mhtfj"]
+
+[node name="BaseEnemy" type="CharacterBody2D"]
+script = ExtResource("1_mhtfj")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+
+[node name="canShootArea" type="Area2D" parent="."]
+
+[node name="reloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

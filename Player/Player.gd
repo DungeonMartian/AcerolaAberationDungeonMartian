@@ -9,6 +9,7 @@ var modMaxSpeed : float
 var armour :float = 0
 var damage : float = 1
 var poisonDamage : float = 0
+var deflectPercent : float = 0
 
 #states
 var dying : bool = false
@@ -18,6 +19,7 @@ var decayMod : float = 7
 var mousePos :Vector2
 var attacking : bool = false
 var canAttack : bool = true
+var canDeflect : bool = false
 
 
 #preloads
@@ -161,8 +163,12 @@ func getUpgrades():
 	if upgradesHas.get("Haptic Perception" ) ==1 :
 		$Sprite2D/Node2D/Haptic.visible = true
 		light.scale = Vector2(0.7,0.7)  
+		canDeflect = true
+		deflectPercent += 20
 	if upgradesHas.get("Occular Degeneration" ) ==1 :
 		light.scale = Vector2(0.4,0.4)  
+		canDeflect = true
+		deflectPercent += 20
 	if upgradesHas.get("Omniscience" ) ==1 :
 		pass
 		
