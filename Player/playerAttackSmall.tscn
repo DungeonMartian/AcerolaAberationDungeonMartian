@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://da475euenj76a"]
+[gd_scene load_steps=5 format=3 uid="uid://da475euenj76a"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/playerAttack.gd" id="1_dql15"]
 [ext_resource type="Texture2D" uid="uid://b6n3r2k05idmv" path="res://AcerolaAberationDungeonMartian/Assets/player/playerAttackSmall.png" id="2_u6nyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjtbh"]
 size = Vector2(11.5, 9.49999)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rn61o"]
+light_mode = 1
 
 [node name="PlayerAttack" type="Area2D"]
 script = ExtResource("1_dql15")
@@ -15,7 +18,8 @@ rotation = 1.57079
 shape = SubResource("RectangleShape2D_fjtbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(11, 0)
+material = SubResource("CanvasItemMaterial_rn61o")
+position = Vector2(11, 1)
 rotation = 1.57079
 texture = ExtResource("2_u6nyb")
 

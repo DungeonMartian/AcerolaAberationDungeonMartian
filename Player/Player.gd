@@ -17,6 +17,7 @@ var spinning : bool = false
 var decayMod : float = 7
 var mousePos :Vector2
 var attacking : bool = false
+var canAttack : bool = true
 
 
 #preloads
@@ -28,6 +29,7 @@ var attacking : bool = false
 @onready var toothPoint = $radulaPivot/ToothPoint
 @onready var toothPoint2 = $radulaPivot/ToothPoint2
 @onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
+@onready var attackTimer = $attackTimer
 
 #upgrade unlocks
 var frogLegs : bool = false
@@ -70,11 +72,14 @@ func get_input():
 	mousePos = get_global_mouse_position()
 	
 	if Input.is_action_pressed("attack"):
-		var at = smallAttack.instantiate()
-		
-		add_child(at)
-		at.look_at(mousePos)
-
+		if canAttack:
+			var at = smallAttack.instantiate()
+			
+			add_child(at)
+			at.look_at(mousePos)
+			attackTimer.start()
+			canAttack = false
+			
 	if Input.is_action_pressed("reload"):
 		get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
 	if Input.is_action_just_pressed("airHorne"):
@@ -217,3 +222,7 @@ func _on_slime_timer_timeout():
 	get_parent().add_child(s)
 	s.global_position = global_position
 	s.damage = poisonDamage
+
+
+func _on_attack_timer_timeout():
+	canAttack = true
