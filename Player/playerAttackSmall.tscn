@@ -1,19 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://da475euenj76a"]
 
-[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/playerAttack.gd" id="1_cx51g"]
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_nkgqt"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/playerAttack.gd" id="1_dql15"]
+[ext_resource type="Texture2D" uid="uid://b6n3r2k05idmv" path="res://AcerolaAberationDungeonMartian/Assets/player/playerAttackSmall.png" id="2_u6nyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjtbh"]
-size = Vector2(128, 128)
+size = Vector2(11.5, 9.49999)
 
 [node name="PlayerAttack" type="Area2D"]
-script = ExtResource("1_cx51g")
+script = ExtResource("1_dql15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, 0)
+rotation = 1.57079
 shape = SubResource("RectangleShape2D_fjtbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nkgqt")
+position = Vector2(11, 0)
+rotation = 1.57079
+texture = ExtResource("2_u6nyb")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

@@ -1,17 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=11 format=3 uid="uid://csp3hdq2ndqbu"]
 
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_17748"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
 [ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_kxq4c"]
+[ext_resource type="Texture2D" uid="uid://dktvr6t20o3uw" path="res://AcerolaAberationDungeonMartian/Assets/player/l0_Aberration1.png" id="3_lhy5j"]
+[ext_resource type="Texture2D" uid="uid://47wnrfimjntm" path="res://AcerolaAberationDungeonMartian/Assets/player/l1_Aberration1.png" id="4_pbmdu"]
+[ext_resource type="Texture2D" uid="uid://bwxkri2afcnpk" path="res://AcerolaAberationDungeonMartian/Assets/player/l2_Aberration1.png" id="5_nx16w"]
+[ext_resource type="Texture2D" uid="uid://cfwe6niwsc0vj" path="res://AcerolaAberationDungeonMartian/Assets/player/l3_Aberration1.png" id="6_4nky2"]
+[ext_resource type="Texture2D" uid="uid://b8elcd5t7nqga" path="res://AcerolaAberationDungeonMartian/Assets/player/l4_Aberration1.png" id="7_cgx45"]
+[ext_resource type="Texture2D" uid="uid://ckhxi757bsqsp" path="res://AcerolaAberationDungeonMartian/Assets/player/l5_Aberration1.png" id="8_v1oga"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ortaq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhn20"]
+height = 28.4383
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_hsisq")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(1, 0.501961, 0.364706, 1)
 shadow_enabled = true
 shadow_color = Color(0, 0.0784314, 0, 1)
@@ -20,13 +27,37 @@ texture_scale = 1.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4.76837e-07, 2.38419e-07)
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("1_17748")
+texture = ExtResource("3_lhy5j")
+
+[node name="Node2D" type="Node2D" parent="Sprite2D"]
+
+[node name="Aposematism" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("4_pbmdu")
+
+[node name="Pulmonatization" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("5_nx16w")
+
+[node name="Arachnopod" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("6_4nky2")
+
+[node name="Tentacles" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("7_cgx45")
+
+[node name="Haptic" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("8_v1oga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ortaq")
+position = Vector2(1, 0)
+scale = Vector2(-0.459727, 0.703277)
+shape = SubResource("CapsuleShape2D_qhn20")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
 
 [node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6si4i")

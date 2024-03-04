@@ -16,6 +16,8 @@ var screenShake : bool = false
 var spinning : bool = false
 var decayMod : float = 7
 var mousePos :Vector2
+var attacking : bool = false
+
 
 #preloads
 @onready var camera = $Camera2D
@@ -25,14 +27,15 @@ var mousePos :Vector2
 @onready var radulaPivot = $radulaPivot
 @onready var toothPoint = $radulaPivot/ToothPoint
 @onready var toothPoint2 = $radulaPivot/ToothPoint2
+@onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
 
 #upgrade unlocks
 var frogLegs : bool = false
 var poisonTrail : bool = false
 var contactPoison : bool = false
-var toothRotate : bool = true
-var hasRadula : bool = true
-var hasExtra : bool = true
+
+var hasRadula : bool = false
+var hasExtra : bool = false
 @onready var slimeTime = $slimeTimer
 @onready var slimeTrail = preload("res://AcerolaAberationDungeonMartian/Player/playerSlime.tscn")
 @onready var radula = preload("res://AcerolaAberationDungeonMartian/Player/radula.tscn")
@@ -51,22 +54,48 @@ func _ready():
 	if hasRadula:
 		var tooth = radula.instantiate()
 		toothPoint.add_child(tooth)
+		tooth.damage = damage
+		tooth.poisonDamage = poisonDamage
 		if hasExtra:
 			var tooth2 = radula.instantiate()
+			tooth2.damage = damage
+			tooth2.poisonDamage = poisonDamage
 			toothPoint2.add_child(tooth2)
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity += input_direction * modSpeed
-	mousePos = get_viewport().get_mouse_position()*3
 	
+	#mousePos = get_viewport().get_mouse_position()*3
+	mousePos = get_global_mouse_position()
+	
+	if Input.is_action_pressed("attack"):
+		var at = smallAttack.instantiate()
+		
+		add_child(at)
+		at.look_at(mousePos)
+
 	if Input.is_action_pressed("reload"):
 		get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
 	if Input.is_action_just_pressed("airHorne"):
 		horn.play()
 		Shake(.1)
+	if Input.is_action_pressed("toothFire"):
+		for i in radulaPivot.get_children():
+			for g in i.get_children():
+				if g.has_method("fire"):
+					g.fire()
+		
 
 func _physics_process(delta):
+	if !attacking:
+		if velocity.x < 0:
+			if !sprite.flip_h == true:
+				sprite.flip_h = true
+		elif velocity.x > 0:
+			if !sprite.flip_h == false:
+				sprite.flip_h = false
+				
 	time += delta*7
 	if !dying:
 		
@@ -80,12 +109,10 @@ func _physics_process(delta):
 	if frogLegs:
 		modSpeed = speed *(get_sine()+1)
 		modMaxSpeed = maxSpeed *(get_sine()+1)
-	
-	if toothRotate:
-		radulaPivot.rotation += rad_to_deg(0.0005)
-			
-	camera.global_position = lerp(global_position, mousePos, delta*3)
 
+	camera.global_position = lerp(global_position, mousePos, delta*15)
+
+	#look_at(mousePos)
 	
 			
 	velocity.y = clamp(velocity.y, -modMaxSpeed, modMaxSpeed)
@@ -115,6 +142,7 @@ func getUpgrades():
 	#Tentacles = 0, Haptic = 0,  = 0, Radula = 0, Arachnopod = 0, Aposematism = 0
 
 	if upgradesHas.get("Tentacles" ) ==1 :
+		$Sprite2D/Node2D/Tentacles.visible = true
 		pass
 	if upgradesHas.get("SharpTentacles" ) ==1 :
 		damage += 2
@@ -133,6 +161,7 @@ func getUpgrades():
 		armour += 1
 		speed -= 5
 		maxSpeed -= 15
+		$Sprite2D/Node2D/Pulmonatization.visible = true
 	if upgradesHas.get("PoisonTrail" ) ==1 :
 		poisonTrail = true
 		poisonDamage +=1
@@ -143,7 +172,6 @@ func getUpgrades():
 		maxSpeed -= 15
 		
 	if upgradesHas.get("Radula" ) ==1 :
-		toothRotate = true
 		hasRadula = true
 		
 	if upgradesHas.get("NeuroToxinPoison" ) ==1 :
@@ -152,8 +180,9 @@ func getUpgrades():
 		hasExtra = true
 
 	if upgradesHas.get("Arachnopod" ) ==1 :
-		speed +=5
-		maxSpeed +=20
+		speed +=2
+		maxSpeed +=5
+		$Sprite2D/Node2D/Arachnopod.visible = true
 	if upgradesHas.get("AllTerrain" ) ==1 :
 		pass
 	if upgradesHas.get("ApexPredator" ) ==1 :
@@ -162,9 +191,10 @@ func getUpgrades():
 	if upgradesHas.get("Aposematism" ) ==1 :
 		poisonDamage +=1
 		set_scale(Vector2(.8,.8))
+		$Sprite2D/Node2D/Aposematism.visible = true
 	if upgradesHas.get("FroggingFast" ) ==1 :
-		speed +=1
-		maxSpeed +=5
+		speed +=5
+		maxSpeed +=15
 		frogLegs = true
 	if upgradesHas.get("Toxic" ) ==1 :
 		poisonDamage += 2
