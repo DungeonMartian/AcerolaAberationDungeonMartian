@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cj7ux08vp6fm4"]
+[gd_scene load_steps=21 format=3 uid="uid://cj7ux08vp6fm4"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/World.gd" id="1_3qktr"]
 [ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="1_pymh7"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://i56tdonef7ju" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/rage-15292.mp3" id="12_w1k4x"]
 [ext_resource type="AudioStream" uid="uid://bxsy0cnvof2l0" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/phantom-116107.mp3" id="13_1atlt"]
 [ext_resource type="AudioStream" uid="uid://wltyq0rwjifm" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/shark-hunt-16191.mp3" id="14_ljdvi"]
+[ext_resource type="AudioStream" uid="uid://6mcl76g3527c" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/ethereal-wasteland-music-4-3569.mp3" id="15_t4jlm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5j05e"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -108,6 +109,9 @@ volume_db = -10.0
 [node name="BossAudio2" type="AudioStreamPlayer" parent="MusicContainer"]
 stream = ExtResource("13_1atlt")
 volume_db = -10.0
+
+[node name="Wasteland" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("15_t4jlm")
 
 [node name="Stage8" type="AudioStreamPlayer" parent="MusicContainer"]
 stream = ExtResource("14_ljdvi")

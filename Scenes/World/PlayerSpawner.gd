@@ -12,11 +12,11 @@ func SpawnPlayer(node):
 		var findMe = node.get_cell_atlas_coords(0,test[g],false)
 
 
-		if findMe == Vector2i(0,0):
-
+		if findMe != Vector2i(1,0):
+			$"../EnemySpawner".spawnEnemies(node, test[g])
 			get_parent().get_parent().add_child.call_deferred(player)
 			player.position = node.map_to_local(test[g])
-			$"../EnemySpawner".spawnEnemies(node, test[g])
+			
 			break
 		else: pass
 	pass

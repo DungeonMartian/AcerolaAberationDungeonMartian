@@ -162,7 +162,7 @@ autoplay = "default"
 visible = false
 sprite_frames = SubResource("SpriteFrames_16vyr")
 autoplay = "default"
-frame_progress = 0.0557373
+frame_progress = 0.540294
 
 [node name="Tentacles" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
 visible = false

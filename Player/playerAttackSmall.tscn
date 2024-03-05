@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b6n3r2k05idmv" path="res://AcerolaAberationDungeonMartian/Assets/player/playerAttackSmall.png" id="2_u6nyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjtbh"]
-size = Vector2(11.5, 9.49999)
+size = Vector2(23.5001, 18.6874)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rn61o"]
 light_mode = 1
@@ -13,14 +13,15 @@ light_mode = 1
 script = ExtResource("1_dql15")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(13, 0)
+position = Vector2(17.6562, 5.25002)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_fjtbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_rn61o")
-position = Vector2(11, 1)
+position = Vector2(14.1589, 4.15883)
 rotation = 1.57079
+scale = Vector2(2, 2)
 texture = ExtResource("2_u6nyb")
 
 [node name="Timer" type="Timer" parent="."]

@@ -4,8 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	match LevelHandler.curLevel:
-		1:
-			$MusicContainer/Stage1.play()
+		
 		2:
 			$MusicContainer/Stage2.play()
 		3:
@@ -17,9 +16,11 @@ func _ready():
 		6:
 			$MusicContainer/BossAudio2.play()
 		7:
-			pass
+			$MusicContainer/Wasteland.play()
 		8:
-			$MusicContainer/AudioStreamPlayer7.play()
+			$MusicContainer/Stage8.play()
+		_:
+			$MusicContainer/Stage1.play()
 		
 		
 

@@ -10,8 +10,8 @@ func spawnEnemies(node, playerLoc):
 	test.sort()
 	for g in LevelHandler.enemyQuant:
 		for n in 100:
-			var xcoord = randi_range(-99, 99)
-			var ycoord = randi_range(-99, 99)
+			var xcoord = randi_range(-70, 99)
+			var ycoord = randi_range(-70, 99)
 			
 			if !( playerLoc.x <= xcoord -5 && playerLoc.x > xcoord+5 ) && !( playerLoc.y <= ycoord -5 && playerLoc.y > ycoord+5 ):
 				

@@ -241,7 +241,7 @@ func _on_slime_timer_timeout():
 	var s = slimeTrail.instantiate()
 	get_parent().add_child(s)
 	s.global_position = global_position
-	s.damage = poisonDamage
+	s.poisonDamage = poisonDamage
 
 
 func _on_attack_timer_timeout():
