@@ -54,22 +54,22 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dgcgb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cbqc"]
 atlas = ExtResource("11_dlkgu")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0pc0h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4jge"]
 atlas = ExtResource("11_dlkgu")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(20, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ke11w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dgcgb")
+"texture": SubResource("AtlasTexture_7cbqc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0pc0h")
+"texture": SubResource("AtlasTexture_g4jge")
 }],
 "loop": true,
 "name": &"default",
@@ -162,7 +162,7 @@ autoplay = "default"
 visible = false
 sprite_frames = SubResource("SpriteFrames_16vyr")
 autoplay = "default"
-frame_progress = 0.620328
+frame_progress = 0.0557373
 
 [node name="Tentacles" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
 visible = false

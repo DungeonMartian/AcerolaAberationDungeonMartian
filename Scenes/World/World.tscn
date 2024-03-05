@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj7ux08vp6fm4"]
+[gd_scene load_steps=20 format=3 uid="uid://cj7ux08vp6fm4"]
 
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/World.gd" id="1_3qktr"]
 [ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="1_pymh7"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkerHead.gd" id="3_acw0t"]
 [ext_resource type="Texture2D" uid="uid://ktvbvpigwpu3" path="res://AcerolaAberationDungeonMartian/Assets/Tiles/PlaceHolderTileSet.png" id="4_3kgb3"]
@@ -7,6 +8,13 @@
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkedUnit.gd" id="4_wfljd"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/EnemySpawner.gd" id="5_qhy2f"]
 [ext_resource type="PackedScene" uid="uid://ds47astxrhh03" path="res://AcerolaAberationDungeonMartian/Scenes/World/LevelProgression.tscn" id="6_54isp"]
+[ext_resource type="AudioStream" uid="uid://4qe4xpjiq3f0" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/assault-15149.mp3" id="8_qml3a"]
+[ext_resource type="AudioStream" uid="uid://nloynhq25nny" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/fireball-139063.mp3" id="9_n7mlw"]
+[ext_resource type="AudioStream" uid="uid://bt0tg5y2xr6eq" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/hail-161274.mp3" id="10_lkye0"]
+[ext_resource type="AudioStream" uid="uid://cnfch2gr0i4v" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/leva-earthquake-169746.mp3" id="11_ggo6b"]
+[ext_resource type="AudioStream" uid="uid://i56tdonef7ju" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/rage-15292.mp3" id="12_w1k4x"]
+[ext_resource type="AudioStream" uid="uid://bxsy0cnvof2l0" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/phantom-116107.mp3" id="13_1atlt"]
+[ext_resource type="AudioStream" uid="uid://wltyq0rwjifm" path="res://AcerolaAberationDungeonMartian/Assets/Audio/music/shark-hunt-16191.mp3" id="14_ljdvi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5j05e"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -39,6 +47,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_rkdmy")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_3qktr")
 
 [node name="Space" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -73,3 +82,33 @@ color = Color(0, 0, 0, 1)
 
 [node name="LevelProgression" parent="." instance=ExtResource("6_54isp")]
 position = Vector2(16, 9)
+
+[node name="MusicContainer" type="Node2D" parent="."]
+
+[node name="Stage1" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("8_qml3a")
+volume_db = -10.0
+
+[node name="Stage2" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("9_n7mlw")
+volume_db = -10.0
+
+[node name="BossAudio" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("10_lkye0")
+volume_db = -5.0
+
+[node name="Stage4" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("11_ggo6b")
+volume_db = -10.0
+
+[node name="Stage5" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("12_w1k4x")
+volume_db = -10.0
+
+[node name="BossAudio2" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("13_1atlt")
+volume_db = -10.0
+
+[node name="Stage8" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("14_ljdvi")
+volume_db = -10.0

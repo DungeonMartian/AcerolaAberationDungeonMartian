@@ -108,3 +108,8 @@ func _on_poison_timer_timeout():
 
 func _on_reload_timer_timeout():
 	canShoot = true
+
+
+func _on_player_detector_body_exited(body):
+	if sprite.get_animation() == "attack":
+			sprite.set_animation("default") 
