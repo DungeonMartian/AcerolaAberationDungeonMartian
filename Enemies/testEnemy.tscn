@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhcfyywr4l127"]
+
+[ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_mxbxk"]
+[ext_resource type="Texture2D" uid="uid://dktvr6t20o3uw" path="res://AcerolaAberationDungeonMartian/Assets/player/l0_Aberration1.png" id="2_0kn7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aabyr"]
+size = Vector2(309, 226)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1vbl"]
+size = Vector2(126, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl06f"]
+size = Vector2(10, 20)
+
+[node name="BaseEnemy" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_mxbxk")]
+damage = 1.0
+health = 5.0
+speed = 10.0
+maxSpeed = 50.0
+reloadTimer = 1.0
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_aabyr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="canShootArea" index="0"]
+shape = SubResource("RectangleShape2D_p1vbl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_0kn7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_bl06f")

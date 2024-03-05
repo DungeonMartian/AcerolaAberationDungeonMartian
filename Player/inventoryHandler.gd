@@ -1,7 +1,8 @@
 extends Node
 
 var upgrades = {"Tentaclular Brachium" = 0, "Haptic Perception" = 0, Pulmonatization = 0, Radula = 0, Arachnopod = 0, Aposematism = 0}
-
+var playerMaxHealth : float = 25
+var playerCurHealth : float = 25
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

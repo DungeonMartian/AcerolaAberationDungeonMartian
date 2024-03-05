@@ -1,7 +1,7 @@
 extends Area2D
 
 var shoot:bool = false
-var damage:int = 8
+var damage:int = 1
 var speed :float =300
 
 
@@ -13,13 +13,16 @@ func _physics_process(delta):
 		position += transform.x * speed *delta
 
 
-func _on_body_entered(body):
-	if body.name == "Player":
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group ("player"):
 		body.playerHit(damage)
 		self.queue_free()
-	elif body.is_in_group("enemies"):
+	elif body.is_in_group("enemy"):
 
 		pass
 	else:
 
 		self.queue_free()
+

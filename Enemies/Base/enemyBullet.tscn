@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbgrq81xbj2go"]
+[gd_scene load_steps=5 format=3 uid="uid://cbgrq81xbj2go"]
 
 [ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_qk80v"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.gd" id="1_xlg8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8jav"]
 size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5cai"]
+size = Vector2(4.5, 4.5)
 
 [node name="EnemyBullet" type="Area2D"]
 script = ExtResource("1_xlg8w")
@@ -16,3 +19,11 @@ texture = ExtResource("1_qk80v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u8jav")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1.00604)
+shape = SubResource("RectangleShape2D_a5cai")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

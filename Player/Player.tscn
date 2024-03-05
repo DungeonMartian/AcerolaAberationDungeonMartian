@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=27 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
@@ -108,6 +108,30 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivf5c"]
 size = Vector2(17.4016, 27.0164)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q676c"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grd27"]
+bg_color = Color(0.721569, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.054902, 0, 0, 0.47451)
+shadow_size = 2
+shadow_offset = Vector2(-2, -2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii36m"]
+bg_color = Color(0.129412, 0.698039, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.788235, 1, 0, 0.0509804)
+shadow_size = 2
+shadow_offset = Vector2(-2, -2)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_hsisq")
@@ -138,9 +162,10 @@ autoplay = "default"
 visible = false
 sprite_frames = SubResource("SpriteFrames_16vyr")
 autoplay = "default"
-frame_progress = 0.472234
+frame_progress = 0.740352
 
 [node name="Tentacles" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ke11w")
 autoplay = "default"
 
@@ -157,6 +182,25 @@ shape = SubResource("RectangleShape2D_ivf5c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_q676c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -117.0
+offset_right = -219.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.77036, 3.77036)
+theme_override_styles/background = SubResource("StyleBoxFlat_grd27")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii36m")
+max_value = 25.0
+value = 13.0
+fill_mode = 3
+show_percentage = false
 
 [node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6si4i")

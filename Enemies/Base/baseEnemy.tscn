@@ -12,4 +12,8 @@ script = ExtResource("1_mhtfj")
 [node name="reloadTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="poisonTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="timeout" from="reloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="poisonTimer" to="." method="_on_poison_timer_timeout"]

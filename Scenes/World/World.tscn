@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cj7ux08vp6fm4"]
+[gd_scene load_steps=12 format=3 uid="uid://cj7ux08vp6fm4"]
 
 [ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="1_pymh7"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkerHead.gd" id="3_acw0t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/PlayerSpawner.gd" id="4_5y15y"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkedUnit.gd" id="4_wfljd"]
 [ext_resource type="PackedScene" uid="uid://ds47astxrhh03" path="res://AcerolaAberationDungeonMartian/Scenes/World/LevelProgression.tscn" id="6_54isp"]
+[ext_resource type="PackedScene" uid="uid://bhcfyywr4l127" path="res://AcerolaAberationDungeonMartian/Enemies/testEnemy.tscn" id="7_qqjpr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5j05e"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -69,3 +70,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="LevelProgression" parent="." instance=ExtResource("6_54isp")]
 position = Vector2(16, 9)
+
+[node name="BaseEnemy" parent="." instance=ExtResource("7_qqjpr")]
+position = Vector2(-4, 21)

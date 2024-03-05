@@ -32,6 +32,7 @@ var canDeflect : bool = false
 @onready var toothPoint2 = $radulaPivot/ToothPoint2
 @onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
 @onready var attackTimer = $attackTimer
+@onready var healthBar = $Camera2D/ProgressBar
 
 #upgrade unlocks
 var frogLegs : bool = false
@@ -76,6 +77,7 @@ func get_input():
 	if Input.is_action_just_pressed("attack"):
 		if canAttack:
 			var at = smallAttack.instantiate()
+			at.damage = damage
 			Shake(.1)
 			add_child(at)
 			at.look_at(mousePos)
@@ -151,7 +153,9 @@ func Shake(value):
 
 func getUpgrades():
 	#Tentacles = 0, Haptic = 0,  = 0, Radula = 0, Arachnopod = 0, Aposematism = 0
-
+	healthBar.max_value = InventoryHandler.playerMaxHealth
+	healthBar.value = InventoryHandler.playerCurHealth
+	updateHP()
 	if upgradesHas.get("Tentaclular Brachium" ) ==1 :
 		$Sprite2D/Node2D/Tentacles.visible = true
 		pass
@@ -217,15 +221,20 @@ func getUpgrades():
 
 	
 
+func playerHit(dmg):
+	InventoryHandler.playerCurHealth -= dmg
+	updateHP()
 
-
+func updateHP():
+	healthBar.value = InventoryHandler.playerCurHealth
+	
 
 		
 		
 func get_sine():
 	return sin(time*1) *1
 
-		
+
 
 
 func _on_slime_timer_timeout():

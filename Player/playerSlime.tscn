@@ -16,3 +16,9 @@ shape = SubResource("RectangleShape2D_ns6sr")
 rotation = 1.5708
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_l1v58")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
