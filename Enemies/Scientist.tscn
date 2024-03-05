@@ -18,6 +18,11 @@ region = Rect2(0, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gwqfx"]
 animations = [{
+"frames": [],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yme1g")
@@ -49,3 +54,4 @@ shape = SubResource("RectangleShape2D_bl06f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_gwqfx")
+animation = &"attack"

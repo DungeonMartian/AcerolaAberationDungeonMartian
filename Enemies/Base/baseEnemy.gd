@@ -6,6 +6,7 @@ var player
 var isInRange : bool = false
 var dying : bool = false
 var canShoot : bool = true
+var looped : bool
 
 var poisonQuant : float = 0
 
@@ -20,6 +21,7 @@ var poisonQuant : float = 0
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
 @onready var shootTimer = $reloadTimer
 @export var sprite : AnimatedSprite2D
+
 
 func _physics_process(_delta):
 	if ! dying:
@@ -52,8 +54,9 @@ func runAway():
 	
 func tryFire():
 	if canShoot:
-		sprite.animation = "attack"
+		
 		canShoot = false
+		looped = false
 		var bul = bullet.instantiate()
 		bul.shoot = true
 		bul.damage = damage
@@ -61,6 +64,8 @@ func tryFire():
 		get_parent().add_child(bul)
 		bul.look_at(player.global_position)
 		shootTimer.start(reloadTimer)
+		if !sprite.get_animation() == "attack":
+			sprite.set_animation("attack") 
 	
 func _on_player_detector_body_entered(body):
 	if body.is_in_group("player"):
