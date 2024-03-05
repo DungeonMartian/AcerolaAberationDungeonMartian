@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhcfyywr4l127"]
+
+[ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_gn6cd"]
+[ext_resource type="Texture2D" uid="uid://b75qbk54w4x1n" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/Scientest.png" id="2_2gaqr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aabyr"]
+size = Vector2(309, 226)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1vbl"]
+size = Vector2(126, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl06f"]
+size = Vector2(10, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yme1g"]
+atlas = ExtResource("2_2gaqr")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwqfx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yme1g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BaseEnemy" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_gn6cd")]
+damage = 1.0
+health = 5.0
+passive = true
+speed = 10.0
+maxSpeed = 50.0
+reloadTimer = 1.0
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_aabyr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="canShootArea" index="0"]
+shape = SubResource("RectangleShape2D_p1vbl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_bl06f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+sprite_frames = SubResource("SpriteFrames_gwqfx")

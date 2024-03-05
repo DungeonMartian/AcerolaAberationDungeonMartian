@@ -20,7 +20,6 @@ func _on_area_2d_body_entered(body):
 		body.playerHit(damage)
 		self.queue_free()
 	elif body.is_in_group("enemy"):
-
 		pass
 	else:
 

@@ -40,7 +40,7 @@ func fire():
 		await get_tree().create_timer(0.7).timeout
 		fired = false
 	
-		await get_tree().create_timer(.2).timeout
+		await get_tree().create_timer(.5).timeout
 		canFire = true
 		#player.toothRotate = true
 		#set_as_top_level(false)
@@ -49,6 +49,8 @@ func fire():
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.enemyHit(damage)
-		body.enemyPoison(poisonDamage)
+		var dir = global_position.direction_to(body.global_position)
+		body.enemyHit(damage, dir)
+		if poisonDamage > 0:
+			body.enemyPoison(poisonDamage)
 

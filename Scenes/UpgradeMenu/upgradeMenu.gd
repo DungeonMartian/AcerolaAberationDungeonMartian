@@ -5,6 +5,7 @@ var chosenUpgrade
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	LevelHandler.nextLevel()
 	randomize()
 	for key in InventoryHandler.upgrades:
 		var value =  InventoryHandler.upgrades[key]

@@ -19,7 +19,7 @@ var poisonQuant : float = 0
 @onready var poisonTimer = $poisonTimer
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
 @onready var shootTimer = $reloadTimer
-@export var sprite : Sprite2D
+@export var sprite : AnimatedSprite2D
 
 func _physics_process(_delta):
 	if ! dying:
@@ -52,6 +52,7 @@ func runAway():
 	
 func tryFire():
 	if canShoot:
+		sprite.animation = "attack"
 		canShoot = false
 		var bul = bullet.instantiate()
 		bul.shoot = true
@@ -77,7 +78,7 @@ func checkHP():
 func enemyPoison(poisonDamage):
 	poisonQuant += poisonDamage
 	poisonTimer.start(1)
-	sprite.modulate.g = 255
+	sprite.modulate.g = 1
 	sprite.modulate.r = 0
 	sprite.modulate.b = 0
 
@@ -95,9 +96,9 @@ func _on_poison_timer_timeout():
 	if poisonQuant <0:
 		poisonTimer.start(1)
 	else:
-		sprite.modulate.g = 255
-		sprite.modulate.r = 255
-		sprite.modulate.b = 255
+		sprite.modulate.g =1
+		sprite.modulate.r = 1
+		sprite.modulate.b =1
 
 
 func _on_reload_timer_timeout():
