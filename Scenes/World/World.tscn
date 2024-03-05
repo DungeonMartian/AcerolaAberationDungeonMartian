@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj7ux08vp6fm4"]
+[gd_scene load_steps=13 format=3 uid="uid://cj7ux08vp6fm4"]
 
 [ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="1_pymh7"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkerHead.gd" id="3_acw0t"]
 [ext_resource type="Texture2D" uid="uid://ktvbvpigwpu3" path="res://AcerolaAberationDungeonMartian/Assets/Tiles/PlaceHolderTileSet.png" id="4_3kgb3"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/PlayerSpawner.gd" id="4_5y15y"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/WalkedUnit.gd" id="4_wfljd"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/EnemySpawner.gd" id="5_qhy2f"]
 [ext_resource type="PackedScene" uid="uid://ds47astxrhh03" path="res://AcerolaAberationDungeonMartian/Scenes/World/LevelProgression.tscn" id="6_54isp"]
 [ext_resource type="PackedScene" uid="uid://bhcfyywr4l127" path="res://AcerolaAberationDungeonMartian/Enemies/testEnemy.tscn" id="7_qqjpr"]
 
@@ -60,6 +61,9 @@ script = ExtResource("4_wfljd")
 [node name="PlayerSpawner" type="Node2D" parent="WalkerHead"]
 script = ExtResource("4_5y15y")
 
+[node name="EnemySpawner" type="Node2D" parent="WalkerHead"]
+script = ExtResource("5_qhy2f")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3yodb")
 format = 2
@@ -72,4 +76,5 @@ color = Color(0, 0, 0, 1)
 position = Vector2(16, 9)
 
 [node name="BaseEnemy" parent="." instance=ExtResource("7_qqjpr")]
+visible = false
 position = Vector2(-4, 21)

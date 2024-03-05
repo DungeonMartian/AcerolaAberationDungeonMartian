@@ -16,6 +16,7 @@ func SpawnPlayer(node):
 
 			get_parent().get_parent().add_child.call_deferred(player)
 			player.position = node.map_to_local(test[g])
+			$"../EnemySpawner".spawnEnemies(node, test[g])
 			break
 		else: pass
 	pass
