@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbgrq81xbj2go"]
+[gd_scene load_steps=10 format=3 uid="uid://cbgrq81xbj2go"]
 
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_qk80v"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.gd" id="1_xlg8w"]
+[ext_resource type="Texture2D" uid="uid://bg6fus0dyslvg" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/enemyBullet.png" id="2_8kx37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8jav"]
 size = Vector2(5, 5)
@@ -9,13 +9,44 @@ size = Vector2(5, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a5cai"]
 size = Vector2(4.5, 4.5)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nr32"]
+atlas = ExtResource("2_8kx37")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l5hv"]
+atlas = ExtResource("2_8kx37")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syssh"]
+atlas = ExtResource("2_8kx37")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jmyi"]
+atlas = ExtResource("2_8kx37")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oafxj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nr32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l5hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syssh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jmyi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="EnemyBullet" type="Area2D" groups=["enemyBullet"]]
 script = ExtResource("1_xlg8w")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.96046e-08, -5.96046e-08)
-scale = Vector2(0.03125, 0.03125)
-texture = ExtResource("1_qk80v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u8jav")
@@ -25,5 +56,9 @@ shape = SubResource("RectangleShape2D_u8jav")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1, 1.00604)
 shape = SubResource("RectangleShape2D_a5cai")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oafxj")
+autoplay = "default"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

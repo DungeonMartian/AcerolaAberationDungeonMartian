@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwud0f7432obi"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Pickups/healthPickup.gd" id="1_1i40u"]
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="2_ii5nb"]
+[ext_resource type="Texture2D" uid="uid://cadk1rnuwf37c" path="res://AcerolaAberationDungeonMartian/Assets/PickUps/HeartPick.png" id="2_qaykn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amsa5"]
 radius = 25.0
@@ -13,8 +13,7 @@ script = ExtResource("1_1i40u")
 shape = SubResource("CircleShape2D_amsa5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -0.594026
-scale = Vector2(0.148726, 0.148726)
-texture = ExtResource("2_ii5nb")
+modulate = Color(1, 1, 1, 0.682353)
+texture = ExtResource("2_qaykn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

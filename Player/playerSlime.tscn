@@ -1,10 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdicpby5qw3ws"]
 
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_l1v58"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/playerSlime.gd" id="1_p8n8f"]
+[ext_resource type="Texture2D" uid="uid://bv4sjtxa3gwjl" path="res://AcerolaAberationDungeonMartian/Assets/player/SlimeTrail.png" id="2_wqh06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ns6sr"]
-size = Vector2(32, 32)
 
 [node name="PlayerSlime" type="Area2D"]
 script = ExtResource("1_p8n8f")
@@ -14,8 +13,7 @@ shape = SubResource("RectangleShape2D_ns6sr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_l1v58")
+texture = ExtResource("2_wqh06")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -207,7 +207,7 @@ stream = ExtResource("3_6si4i")
 volume_db = -11.702
 
 [node name="slimeTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.2
 
 [node name="radulaPivot" type="Node2D" parent="."]
 

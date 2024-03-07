@@ -206,7 +206,7 @@ func getUpgrades():
 		poisonTrail = true
 		poisonDamage +=1
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
-		set_scale(Vector2(1.3,1.3))
+		set_scale(Vector2(1.2,1.2))
 		armour += 1
 		speed -= 5
 		maxSpeed -= 15
