@@ -18,7 +18,7 @@ func spawnEnemies(node, playerLoc):
 				var findMe = node.get_cell_atlas_coords(0,Vector2i(xcoord,ycoord),false)
 		
 				if findMe != Vector2i(0,0):
-					print("success")
+					#print("success")
 					var en = LevelHandler.get_enemy()#.instantiate()
 					get_parent().get_parent().add_child.call_deferred(en)
 					en.position = node.map_to_local(Vector2i(xcoord,ycoord))

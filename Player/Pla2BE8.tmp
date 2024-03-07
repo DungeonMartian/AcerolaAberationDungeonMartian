@@ -1,0 +1,225 @@
+[gd_scene load_steps=27 format=3 uid="uid://csp3hdq2ndqbu"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
+[ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_kxq4c"]
+[ext_resource type="Texture2D" uid="uid://dktvr6t20o3uw" path="res://AcerolaAberationDungeonMartian/Assets/player/l0_Aberration1.png" id="3_lhy5j"]
+[ext_resource type="Texture2D" uid="uid://47wnrfimjntm" path="res://AcerolaAberationDungeonMartian/Assets/player/l1_Aberration1.png" id="4_pbmdu"]
+[ext_resource type="Texture2D" uid="uid://bjkenf7wf4pmk" path="res://AcerolaAberationDungeonMartian/Assets/player/SlimeBod.png" id="9_mx22o"]
+[ext_resource type="Texture2D" uid="uid://ctbsh7877niu4" path="res://AcerolaAberationDungeonMartian/Assets/player/SpiderLegs.png" id="10_osmof"]
+[ext_resource type="Texture2D" uid="uid://xbbsp8a7u6w1" path="res://AcerolaAberationDungeonMartian/Assets/player/TentacleArmSmall.png" id="11_dlkgu"]
+[ext_resource type="Texture2D" uid="uid://cgp6s36jw6qtc" path="res://AcerolaAberationDungeonMartian/Assets/player/BodyFeelers.png" id="12_ipsnj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id36a"]
+atlas = ExtResource("9_mx22o")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t56sx"]
+atlas = ExtResource("9_mx22o")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fenfs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id36a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t56sx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fphcq"]
+atlas = ExtResource("10_osmof")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be1wc"]
+atlas = ExtResource("10_osmof")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16vyr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fphcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be1wc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cbqc"]
+atlas = ExtResource("11_dlkgu")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4jge"]
+atlas = ExtResource("11_dlkgu")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ke11w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cbqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4jge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5hj0"]
+atlas = ExtResource("12_ipsnj")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0k42"]
+atlas = ExtResource("12_ipsnj")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsqla"]
+atlas = ExtResource("12_ipsnj")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ylu2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5hj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0k42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsqla")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivf5c"]
+size = Vector2(17.4016, 27.0164)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q676c"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grd27"]
+bg_color = Color(0.721569, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.054902, 0, 0, 0.47451)
+shadow_size = 2
+shadow_offset = Vector2(-2, -2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii36m"]
+bg_color = Color(0.129412, 0.698039, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.788235, 1, 0, 0.0509804)
+shadow_size = 2
+shadow_offset = Vector2(-2, -2)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+script = ExtResource("1_hsisq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.501961, 0.364706, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0.0784314, 0, 1)
+texture = ExtResource("3_kxq4c")
+texture_scale = 1.6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 2.38419e-07)
+texture = ExtResource("3_lhy5j")
+
+[node name="Node2D" type="Node2D" parent="Sprite2D"]
+
+[node name="Aposematism" type="Sprite2D" parent="Sprite2D/Node2D"]
+visible = false
+texture = ExtResource("4_pbmdu")
+
+[node name="Pulmonatization" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_fenfs")
+autoplay = "default"
+
+[node name="Arachnopod" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_16vyr")
+autoplay = "default"
+frame_progress = 0.540294
+
+[node name="Tentacles" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ke11w")
+autoplay = "default"
+
+[node name="Haptic" type="AnimatedSprite2D" parent="Sprite2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ylu2p")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+rotation = -3.14159
+scale = Vector2(0.459727, -0.703277)
+shape = SubResource("RectangleShape2D_ivf5c")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
+
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_q676c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -117.0
+offset_right = -219.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.77036, 3.77036)
+theme_override_styles/background = SubResource("StyleBoxFlat_grd27")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii36m")
+max_value = 25.0
+value = 13.0
+fill_mode = 3
+show_percentage = false
+
+[node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6si4i")
+volume_db = -11.702
+
+[node name="slimeTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="radulaPivot" type="Node2D" parent="."]
+
+[node name="ToothPoint" type="Node2D" parent="radulaPivot"]
+position = Vector2(11, 0)
+
+[node name="ToothPoint2" type="Node2D" parent="radulaPivot"]
+position = Vector2(-11, 0)
+
+[node name="attackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="slimeTimer" to="." method="_on_slime_timer_timeout"]
+[connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]

@@ -33,7 +33,7 @@ func get_enemy():
 		toReturn = passiveEnemy
 	else:
 		toReturn = passiveEnemy
-	print(toReturn)
+	#print(toReturn)
 	return toReturn.instantiate()
 	 
 	

@@ -45,7 +45,7 @@ health = 3.0
 passive = true
 speed = 10.0
 maxSpeed = 50.0
-reloadTimer = 1.0
+reloadTimer = 10.0
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]

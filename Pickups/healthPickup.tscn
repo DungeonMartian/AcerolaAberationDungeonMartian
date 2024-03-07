@@ -16,3 +16,5 @@ shape = SubResource("CircleShape2D_amsa5")
 rotation = -0.594026
 scale = Vector2(0.148726, 0.148726)
 texture = ExtResource("2_ii5nb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

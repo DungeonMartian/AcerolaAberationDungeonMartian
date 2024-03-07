@@ -13,6 +13,7 @@ var poisonQuant : float = 0
 @export var damage : float
 @export var health : float
 @export var passive : bool
+@export var isRanged : bool
 @export var speed : float
 @export var maxSpeed : float
 @export var reloadTimer : float
@@ -21,6 +22,11 @@ var poisonQuant : float = 0
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
 @onready var shootTimer = $reloadTimer
 @export var sprite : AnimatedSprite2D
+
+func _ready():
+	if LevelHandler.curLoop != 0:
+		damage+= LevelHandler.curLoop
+		health +=(LevelHandler.curLoop *3)
 
 
 func _physics_process(_delta):
@@ -77,6 +83,9 @@ func checkHP():
 		if !dying:
 			dying = true
 			await get_tree().create_timer(1.0).timeout
+			var i = randi_range(0, 4)
+			if i == 1:
+				get_parent().spawnLoot(global_position)
 			queue_free()
 
 
@@ -97,7 +106,6 @@ func enemyHit(dmg, dir):
 
 
 func _on_poison_timer_timeout():
-	print(poisonQuant)
 	poisonQuant -=1
 	health -= 1
 	

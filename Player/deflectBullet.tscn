@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cskcwpr2xjokc"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/deflectBullet.gd" id="1_y6wvy"]
+[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="2_23fw4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8jav"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5cai"]
+size = Vector2(4.5, 4.5)
+
+[node name="deflectBullet" type="Area2D" groups=["enemyBullet"]]
+script = ExtResource("1_y6wvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, -5.96046e-08)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("2_23fw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u8jav")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1.00604)
+shape = SubResource("RectangleShape2D_a5cai")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

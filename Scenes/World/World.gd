@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@onready var hpPick = preload("res://AcerolaAberationDungeonMartian/Pickups/healthPickup.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	match LevelHandler.curLoop:
@@ -26,5 +26,10 @@ func _ready():
 		_:
 			$MusicContainer/Wasteland.play()
 
-
+func spawnLoot(loc):
+	#this might roll if I can think of some
+	var pick = hpPick.instantiate()
+	pick.global_position = loc
+	add_child(pick)
+	
 

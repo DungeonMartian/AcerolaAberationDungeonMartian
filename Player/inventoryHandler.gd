@@ -38,7 +38,7 @@ func improve():
 			upgrades["Toxic"] = 0
 			upgrades["Bufonidaemorphism"] = 0
 		pass
-	print(upgrades)
+	#print(upgrades)
 	pass
 
 

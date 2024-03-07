@@ -10,6 +10,7 @@ var armour :float = 0
 var damage : float = 1
 var poisonDamage : float = 0
 var deflectPercent : float = 0
+var swingRate : float = 1
 
 #states
 var dying : bool = false
@@ -30,6 +31,7 @@ var canDeflect : bool = false
 @onready var radulaPivot = $radulaPivot
 @onready var toothPoint = $radulaPivot/ToothPoint
 @onready var toothPoint2 = $radulaPivot/ToothPoint2
+@onready var defBullet = preload("res://AcerolaAberationDungeonMartian/Player/deflectBullet.tscn")
 @onready var regAttack = preload("res://AcerolaAberationDungeonMartian/Player/MeleeAttack.tscn")
 @onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
 @onready var attackTimer = $attackTimer
@@ -39,6 +41,9 @@ var canDeflect : bool = false
 var frogLegs : bool = false
 var poisonTrail : bool = false
 var contactPoison : bool = false
+var neuroToxic : bool = false
+var hasTent : bool = false
+var hasLongTent : bool = false
 
 var hasRadula : bool = false
 var hasExtra : bool = false
@@ -61,7 +66,8 @@ func _ready():
 		var tooth = radula.instantiate()
 		toothPoint.add_child(tooth)
 		tooth.damage = damage
-		tooth.poisonDamage = poisonDamage
+		if neuroToxic:
+			tooth.poisonDamage = poisonDamage
 		if hasExtra:
 			var tooth2 = radula.instantiate()
 			tooth2.damage = damage
@@ -83,8 +89,12 @@ func get_input():
 			at.damage = damage
 			Shake(.1)
 			add_child(at)
+			if hasTent:
+				at.set_scale(Vector2( 1.2,  1.2))
+			if hasLongTent:
+				at.set_scale(Vector2( 1.5,  1.5))
 			at.look_at(mousePos)
-			attackTimer.start()
+			attackTimer.start(swingRate)
 			canAttack = false
 			
 	if Input.is_action_pressed("reload"):
@@ -114,7 +124,13 @@ func _physics_process(delta):
 				
 	time += delta*7
 	if !dying:
-		
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			if collision.get_collider() != null:
+				if collision.get_collider().is_in_group("enemy") :
+					collision.get_collider().enemyPoison(poisonDamage)
+				else: pass
+				
 		get_input()
 		if screenShake:
 			camera.offset.x = randf_range(-5,5)
@@ -161,11 +177,11 @@ func getUpgrades():
 	updateHP()
 	if upgradesHas.get("Tentaclular Brachium" ) ==1 :
 		$Sprite2D/Node2D/Tentacles.visible = true
-		pass
+		hasTent  = true
 	if upgradesHas.get("Sharp Tentacles" ) ==1 :
 		damage += 2
 	if upgradesHas.get("Long Tentacles" ) ==1 :
-		pass
+		hasLongTent = true
 		
 	if upgradesHas.get("Haptic Perception" ) ==1 :
 		$Sprite2D/Node2D/Haptic.visible = true
@@ -177,6 +193,7 @@ func getUpgrades():
 		canDeflect = true
 		deflectPercent += 20
 	if upgradesHas.get("Omniscience" ) ==1 :
+		#done just remember if you add more projectile types
 		pass
 		
 	if upgradesHas.get("Pulmonatization" ) ==1 :
@@ -196,8 +213,8 @@ func getUpgrades():
 		
 	if upgradesHas.get("Radula" ) ==1 :
 		hasRadula = true
-		
 	if upgradesHas.get("Neurotoxin Poison" ) ==1 :
+		neuroToxic = true
 		poisonDamage +=2
 	if upgradesHas.get("Extra Tooth" ) ==1 :
 		hasExtra = true
@@ -207,14 +224,16 @@ func getUpgrades():
 		maxSpeed +=5
 		$Sprite2D/Node2D/Arachnopod.visible = true
 	if upgradesHas.get("All Terrain" ) ==1 :
-		pass
+		speed +=3
+		maxSpeed +=10
 	if upgradesHas.get("Apex Predator" ) ==1 :
-		damage +=1
+		damage +=2
 
 	if upgradesHas.get("Aposematism" ) ==1 :
 		poisonDamage +=1
 		set_scale(Vector2(.8,.8))
 		$Sprite2D/Node2D/Aposematism.visible = true
+		contactPoison = true
 	if upgradesHas.get("Bufonidaemorphism" ) ==1 :
 		speed +=5
 		maxSpeed +=15
@@ -224,8 +243,23 @@ func getUpgrades():
 
 	
 
-func playerHit(dmg):
-	InventoryHandler.playerCurHealth -= dmg
+func playerHit(dmg, isBullet):
+	var tempDMG = dmg - armour
+	
+	if deflectPercent > 0:
+		if isBullet == true:
+			var defRoll = randi_range(0,99)
+			if defRoll< deflectPercent:
+				var defB = defBullet.instantiate()
+				defB.global_position = global_position
+				call_deferred("add_child", defB)
+				defB.look_at(Vector2i(randi_range(-3000,3000),randi_range(-3000,3000)))
+			else: InventoryHandler.playerCurHealth -= tempDMG
+		else: InventoryHandler.playerCurHealth -= tempDMG
+	else: InventoryHandler.playerCurHealth -= tempDMG
+		
+	
+	
 	updateHP()
 
 func updateHP():
@@ -238,6 +272,16 @@ func get_sine():
 	return sin(time*1) *1
 
 
+func pickup(type, amount):
+	match type:
+		"health":
+			InventoryHandler.playerCurHealth += amount
+			updateHP()
+		_:
+			print("uh oh")
+	
+	
+	pass
 
 
 func _on_slime_timer_timeout():

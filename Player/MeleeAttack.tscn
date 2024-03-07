@@ -95,7 +95,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 30.0
+"speed": 60.0
 }]
 
 [node name="MeleeAttack" type="Area2D"]
@@ -113,7 +113,7 @@ sprite_frames = SubResource("SpriteFrames_x0okr")
 autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 autostart = true
 
