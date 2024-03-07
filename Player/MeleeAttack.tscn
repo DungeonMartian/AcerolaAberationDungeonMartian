@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://beswgnk64cngs"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/MeleeAttack.gd" id="1_8unui"]
+[ext_resource type="Texture2D" uid="uid://cskfts2qd762p" path="res://AcerolaAberationDungeonMartian/Assets/player/MeleeAttack.png" id="1_phno6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lihev"]
+size = Vector2(52, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbaor"]
+atlas = ExtResource("1_phno6")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lam3i"]
+atlas = ExtResource("1_phno6")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcx12"]
+atlas = ExtResource("1_phno6")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te5kr"]
+atlas = ExtResource("1_phno6")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e02bg"]
+atlas = ExtResource("1_phno6")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfvbo"]
+atlas = ExtResource("1_phno6")
+region = Rect2(250, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvtaw"]
+atlas = ExtResource("1_phno6")
+region = Rect2(300, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eywbg"]
+atlas = ExtResource("1_phno6")
+region = Rect2(350, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dmo6"]
+atlas = ExtResource("1_phno6")
+region = Rect2(400, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x0okr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbaor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbaor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbaor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lam3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lam3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcx12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcx12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te5kr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e02bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e02bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfvbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvtaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvtaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eywbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dmo6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_2dmo6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="MeleeAttack" type="Area2D"]
+script = ExtResource("1_8unui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29, 1.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_lihev")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, 1.90735e-06)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_x0okr")
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

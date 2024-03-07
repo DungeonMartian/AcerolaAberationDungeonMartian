@@ -19,7 +19,7 @@ func _ready():
 		possibleUpgrades.remove_at(randUpgrade)
 		
 	
-	
+	 
 
 
 

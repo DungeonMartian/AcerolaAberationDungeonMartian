@@ -10,6 +10,7 @@ func _on_body_entered(body):
 		body.enemyHit(damage, dir)
 
 
+
 func _on_timer_timeout():
 	queue_free()
 

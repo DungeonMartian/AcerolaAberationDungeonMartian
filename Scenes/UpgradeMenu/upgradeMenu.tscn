@@ -1,10 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://ytcyyqmwsqvi"]
+[gd_scene load_steps=7 format=3 uid="uid://ytcyyqmwsqvi"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/upgradeMenu.gd" id="1_svr0p"]
 [ext_resource type="PackedScene" uid="uid://ehwd2wv6y3nd" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/UpgradePanel.tscn" id="2_om5cx"]
+[ext_resource type="Texture2D" uid="uid://dh18y8pgkhqff" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/Space.png" id="3_q83ek"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="4_qv5d3"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/UpgradeMenu/PathFollow2D.gd" id="4_sc4wt"]
+
+[sub_resource type="Curve2D" id="Curve2D_kpiyg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 352, 16, 11.8921, -1.18921, -11.8921, 1.18921, 248, 48, 17.8381, -10.7029, -17.8381, 10.7029, 152, 64, 10.1083, -10.1083, -10.1083, 10.1083, 104, 104, 0.594603, -16.6489, -0.594603, 16.6489, 96, 144, -5.35143, -14.2705, 5.35143, 14.2705, 104, 224, -22.5949, -16.6489, 22.5949, 16.6489, 144, 256, -22.5949, -3.56762, 22.5949, 3.56762, 208, 280, -27.3518, -5.94603, 27.3518, 5.94603, 296, 296, -23.1895, -2.37841, 23.1895, 2.37841, 384, 328, -26.1626, 3.56762, 26.1626, -3.56762, 512, 344, -16.6489, 19.0273, 16.6489, -19.0273, 600, 304, -4.16222, 22.0003, 4.16222, -22.0003, 616, 248, 26.7572, 22.5949, -26.7572, -22.5949, 592, 176, 22.0003, -17.8381, -22.0003, 17.8381, 472, 192, 30.3248, -2.97302, -30.3248, 2.97302, 376, 288, 14.2705, 3.56762, -14.2705, -3.56762, 232, 248, -5.35143, 29.1356, 5.35143, -29.1356, 208, 200, -26.7572, 2.97302, 26.7572, -2.97302, 280, 168, -26.1626, 0.594603, 26.1626, -0.594603, 360, 176, -14.2705, 19.0273, 14.2705, -19.0273, 448, 144, 17.2435, 16.0543, -17.2435, -16.0543, 472, 80, 4.16222, 25.5679, -4.16222, -25.5679, 368, 64, -13, -0.5, 13, 0.5, 408, 40, -12.8237, -3.57381, 12.8237, 3.57381, 496, 48, -6.51695, -4.20448, 6.51695, 4.20448, 544, 112, -8.82941, 5.46583, 8.82941, -5.46583, 600, 112, 6.9374, 8.82941, -6.9374, -8.82941, 600, 56, 9.67031, 1.26134, -9.67031, -1.26134, 528, 32, 6.54064, -0.445953, -6.54064, 0.445953, 464, 24, 3.57381, 0.840896, -3.57381, -0.840896, 392, 24, 4.09937, 1.05112, -4.09937, -1.05112, 376, 16, 0, 0, 0, 0, 352, 16)
+}
+point_count = 33
 
 [node name="Upgrades" type="Node2D"]
 script = ExtResource("1_svr0p")
+
+[node name="BGcontainer" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="BGcontainer"]
+position = Vector2(320, 180)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_q83ek")
+metadata/_edit_lock_ = true
+
+[node name="Path2D" type="Path2D" parent="BGcontainer"]
+curve = SubResource("Curve2D_kpiyg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BGcontainer/Path2D"]
+position = Vector2(352, 16)
+rotation = 2.84309
+script = ExtResource("4_sc4wt")
+
+[node name="PointLight2D2" type="PointLight2D" parent="BGcontainer/Path2D/PathFollow2D"]
+color = Color(0.313726, 0, 1, 1)
+energy = 2.0
+blend_mode = 2
+texture = ExtResource("4_qv5d3")
+texture_scale = 0.9
+height = 5.0
+
+[node name="PointLight2D" type="PointLight2D" parent="BGcontainer/Path2D/PathFollow2D"]
+color = Color(1, 0, 0, 1)
+energy = 2.0
+blend_mode = 2
+texture = ExtResource("4_qv5d3")
+
+[node name="PointLight2D3" type="PointLight2D" parent="BGcontainer/Path2D/PathFollow2D"]
+color = Color(0.0745098, 0, 0.329412, 1)
+energy = 0.53
+texture = ExtResource("4_qv5d3")
+texture_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

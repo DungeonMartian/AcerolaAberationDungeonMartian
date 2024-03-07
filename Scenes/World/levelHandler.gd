@@ -3,6 +3,7 @@ extends Node
 
 var curLevel : int = 1
 var enemyQuant : int = 10
+var curLoop : int = 0
 
 @onready var passiveEnemy = preload("res://AcerolaAberationDungeonMartian/Enemies/Scientist.tscn")
 @onready var securityBot = preload("res://AcerolaAberationDungeonMartian/Enemies/LaserRobot.tscn")
@@ -12,6 +13,9 @@ var armyGuy
 func nextLevel():
 	curLevel += 1
 	enemyQuant +=1
+	if curLevel ==8:
+		curLevel = 1
+		curLoop +=1
 	
 
 

@@ -38,4 +38,7 @@ func calculate_path(node, length):
 		location += modifierDirection * tileSize
 		#print(location)
 		var mapCords := tm.local_to_map(location)
-		tm.set_cell(0, mapCords, 0, Vector2(0,0))
+		if LevelHandler.curLevel == 1 || LevelHandler.curLevel == 2 ||LevelHandler.curLevel == 3:
+			tm.set_cell(0, mapCords, 0, Vector2(1,0))
+		elif LevelHandler.curLevel == 4 || LevelHandler.curLevel == 5 ||LevelHandler.curLevel == 6 ||LevelHandler.curLevel == 7:
+			tm.set_cell(0, mapCords, 0, Vector2(randi_range(5,6),0))

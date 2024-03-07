@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhcfyywr4l127"]
+[gd_scene load_steps=9 format=3 uid="uid://bhcfyywr4l127"]
 
 [ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_gn6cd"]
 [ext_resource type="Texture2D" uid="uid://b75qbk54w4x1n" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/Scientest.png" id="2_2gaqr"]
@@ -12,13 +12,20 @@ size = Vector2(126, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl06f"]
 size = Vector2(10, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oxw6"]
+atlas = ExtResource("2_2gaqr")
+region = Rect2(0, 0, 20, 20)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yme1g"]
 atlas = ExtResource("2_2gaqr")
 region = Rect2(0, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gwqfx"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oxw6")
+}],
 "loop": false,
 "name": &"attack",
 "speed": 5.0
@@ -55,3 +62,4 @@ shape = SubResource("RectangleShape2D_bl06f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_gwqfx")
 animation = &"attack"
+autoplay = "default"

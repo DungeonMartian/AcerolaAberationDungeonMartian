@@ -72,7 +72,7 @@ func _on_player_detector_body_entered(body):
 		player = body
 		
 func checkHP():
-	print(health)
+
 	if health <0:
 		if !dying:
 			dying = true
@@ -89,18 +89,23 @@ func enemyPoison(poisonDamage):
 
 	
 func enemyHit(dmg, dir):
-	print("hit")
+	
 	health -= dmg
-	velocity += dir *( dmg * 500)
+	velocity = dir *( dmg * 500)
+	move_and_slide()
 	checkHP()
 
 
 func _on_poison_timer_timeout():
+	print(poisonQuant)
 	poisonQuant -=1
+	health -= 1
+	
 	checkHP()
-	if poisonQuant <0:
-		poisonTimer.start(1)
-	else:
+	if poisonQuant >0:
+		if poisonTimer.is_stopped ( ):
+			poisonTimer.start(1)
+	if poisonQuant <=0:
 		sprite.modulate.g =1
 		sprite.modulate.r = 1
 		sprite.modulate.b =1
@@ -111,5 +116,7 @@ func _on_reload_timer_timeout():
 
 
 func _on_player_detector_body_exited(body):
-	if sprite.get_animation() == "attack":
+	if body.is_in_group("player"):
+		player = null
+		if sprite.get_animation() == "attack":
 			sprite.set_animation("default") 

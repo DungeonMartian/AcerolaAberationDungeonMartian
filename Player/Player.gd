@@ -30,6 +30,7 @@ var canDeflect : bool = false
 @onready var radulaPivot = $radulaPivot
 @onready var toothPoint = $radulaPivot/ToothPoint
 @onready var toothPoint2 = $radulaPivot/ToothPoint2
+@onready var regAttack = preload("res://AcerolaAberationDungeonMartian/Player/MeleeAttack.tscn")
 @onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
 @onready var attackTimer = $attackTimer
 @onready var healthBar = $Camera2D/ProgressBar
@@ -76,7 +77,9 @@ func get_input():
 	
 	if Input.is_action_just_pressed("attack"):
 		if canAttack:
-			var at = smallAttack.instantiate()
+			
+			var at = regAttack.instantiate()
+			#var at = smallAttack.instantiate()
 			at.damage = damage
 			Shake(.1)
 			add_child(at)

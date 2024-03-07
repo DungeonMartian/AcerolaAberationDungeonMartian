@@ -9,6 +9,8 @@ func _ready():
 	for child in get_children():
 		if child.has_method("calculate_path"):
 			child.calculate_path(tilemap, 1000)
+		#elif child.has_method("TileReplacer"):
+		#	child.TileReplacer(tilemap)
 		elif child.has_method("SpawnPlayer"):
 			child.SpawnPlayer(tilemap)
 
