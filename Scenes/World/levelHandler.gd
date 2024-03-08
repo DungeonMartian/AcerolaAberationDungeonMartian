@@ -1,7 +1,7 @@
 extends Node
 
 
-var curLevel : int = 1
+var curLevel : int = 6
 var enemyQuant : int = 10
 var curLoop : int = 0
 

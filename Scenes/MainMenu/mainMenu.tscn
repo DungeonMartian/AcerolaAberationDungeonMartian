@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://co5tk1dq1lrwg"]
+[gd_scene load_steps=7 format=3 uid="uid://co5tk1dq1lrwg"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.gd" id="1_aemr3"]
 [ext_resource type="Texture2D" uid="uid://bpx3rkiopikot" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/mainMenuAbberation.png" id="1_ak35v"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_jd3rg"]
+[ext_resource type="AudioStream" uid="uid://cxn0xnmtslud" path="res://AcerolaAberationDungeonMartian/Assets/Audio/loud-silence-75803.mp3" id="4_2jyr7"]
+[ext_resource type="AudioStream" uid="uid://dcym6lpkbfosu" path="res://AcerolaAberationDungeonMartian/Assets/Audio/facility-siren-loopable-100687.mp3" id="5_6pnfn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fakf6"]
+light_mode = 1
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_aemr3")
@@ -13,6 +19,7 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+material = SubResource("CanvasItemMaterial_fakf6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,30 +31,72 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+use_parent_material = true
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+use_parent_material = true
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+use_parent_material = true
 layout_mode = 2
 
 [node name="playButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Play"
 
 [node name="optionsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Options"
 
 [node name="quitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "Quit
 "
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(290, 47)
+scale = Vector2(0.528063, 0.528063)
+color = Color(0.937255, 0, 0, 1)
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(1, 0, 0, 0)
+texture = ExtResource("3_jd3rg")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(290, 47)
+scale = Vector2(0.575689, 0.575689)
+color = Color(0.705882, 0, 0, 1)
+energy = 1.85
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(1, 0, 0, 0)
+texture = ExtResource("3_jd3rg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2jyr7")
+volume_db = -10.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6pnfn")
+volume_db = -10.0
+
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/optionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

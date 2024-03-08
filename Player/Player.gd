@@ -57,7 +57,7 @@ var upgradesHas = InventoryHandler.upgrades
 
 
 func _ready():
-	if LevelHandler.curLevel ==7 || LevelHandler.curLoop >1:
+	if LevelHandler.curLevel ==7 || LevelHandler.curLoop >=1:
 		var grey = Color (0.3, 0.3, 0.3, 1)
 		light.set_color(grey)
 	randomize()
@@ -201,11 +201,11 @@ func getUpgrades():
 		$Sprite2D/Node2D/Haptic.visible = true
 		light.scale = Vector2(0.7,0.7)  
 		canDeflect = true
-		deflectPercent += 20
+		deflectPercent += 30
 	if upgradesHas.get("Occular Degeneration" ) ==1 :
 		light.scale = Vector2(0.4,0.4)  
 		canDeflect = true
-		deflectPercent += 20
+		deflectPercent += 30
 	if upgradesHas.get("Omniscience" ) ==1 :
 		#done 
 		pass
@@ -245,7 +245,7 @@ func getUpgrades():
 
 	if upgradesHas.get("Aposematism" ) ==1 :
 		poisonDamage +=1
-		set_scale(Vector2(.8,.8))
+		set_scale(Vector2(.9,.9))
 		$Sprite2D/Node2D/Aposematism.visible = true
 		contactPoison = true
 	if upgradesHas.get("Bufonidaemorphism" ) ==1 :
@@ -290,7 +290,7 @@ func playerHit(dmg, isBullet):
 
 func updateHP():
 	healthBar.value = InventoryHandler.playerCurHealth
-	print(InventoryHandler.playerCurHealth)
+	#print(InventoryHandler.playerCurHealth)
 	if InventoryHandler.playerCurHealth <=0 :
 		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
 

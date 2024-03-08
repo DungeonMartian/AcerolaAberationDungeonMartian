@@ -39,7 +39,7 @@ animations = [{
 [node name="armyMan" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_of4iy")]
 script = ExtResource("2_yfx51")
 damage = 2.0
-health = 10.0
+health = 4.0
 isRanged = true
 speed = 20.0
 maxSpeed = 100.0

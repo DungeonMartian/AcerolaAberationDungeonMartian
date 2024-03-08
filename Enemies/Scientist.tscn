@@ -41,7 +41,7 @@ animations = [{
 
 [node name="BaseEnemy" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_gn6cd")]
 damage = 1.0
-health = 3.0
+health = 2.0
 passive = true
 speed = 10.0
 maxSpeed = 50.0

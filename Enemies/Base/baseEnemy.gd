@@ -39,6 +39,8 @@ func _physics_process(_delta):
 				runAway()
 			if !passive:
 				moveTowards()
+	elif dying:
+		velocity = Vector2(0,0)
 	if velocity.x < 0:
 		if !sprite.is_flipped_h():
 			sprite.set_flip_h(true)
