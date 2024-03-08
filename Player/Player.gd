@@ -150,6 +150,7 @@ func _physics_process(delta):
 			camera.offset.y = randf_range(-5,5)
 		if spinning:
 			sprite.rotation += rad_to_deg(0.004)
+			canHurt = false
 	
 	if frogLegs:
 		modSpeed = speed *(get_sine()+1)
@@ -206,7 +207,7 @@ func getUpgrades():
 		canDeflect = true
 		deflectPercent += 20
 	if upgradesHas.get("Omniscience" ) ==1 :
-		#done just remember if you add more projectile types
+		#done 
 		pass
 		
 	if upgradesHas.get("Pulmonatization" ) ==1 :

@@ -21,18 +21,61 @@ func nextLevel():
 
 func get_enemy():
 	var toReturn
-	var i = randi_range(0,3)
-	if i == 0:
-		toReturn = passiveEnemy
+	match curLevel:
+		1:
+			var i = randi_range(0,2)
+			if i == 0:
+				toReturn = securityBot
+			else:
+				toReturn = passiveEnemy
+		2:
+			var i = randi_range(0,3)
+			if i == 0:
+				toReturn = passiveEnemy
+			else:
+				toReturn = securityBot
+		3:
+			var i = randi_range(0,1)
+			if i == 0:
+				toReturn = armyGuy
+			else:
+				toReturn = securityBot
+			#add boss fight
+		4:
+			var i = randi_range(0,1)
+			if i == 0:
+				toReturn = armyGuy
+			else:
+				toReturn = securityBot
+			#wildlife
+		5:
+			var i = randi_range(0,1)
+			if i == 0:
+				toReturn = armyGuy
+			else:
+				toReturn = securityBot
+			#wildlife
+		6:
+			var i = randi_range(0,1)
+			if i == 0:
+				toReturn = armyGuy
+			else:
+				toReturn = securityBot
+			#wildlife
+			#add boss fight
+		7:
+			var i = randi_range(0,1)
+			if i == 0:
+				toReturn = armyGuy
+			else:
+				toReturn = securityBot
+		_:
+			print("fuck")
+			toReturn = passiveEnemy
+			
+			
+	
 
-	elif i == 1:
-		#toReturn = passiveEnemy
-		toReturn = securityBot
-
-	elif i == 2:
-		toReturn = armyGuy
-	else:
-		toReturn = passiveEnemy
 	#print(toReturn)
 	return toReturn.instantiate()
 	 
