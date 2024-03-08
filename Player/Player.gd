@@ -21,6 +21,7 @@ var mousePos :Vector2
 var attacking : bool = false
 var canAttack : bool = true
 var canDeflect : bool = false
+var canHurt : bool = true
 
 
 #preloads
@@ -135,12 +136,13 @@ func _physics_process(delta):
 				
 	time += delta*7
 	if !dying:
-		for i in get_slide_collision_count():
-			var collision = get_slide_collision(i)
-			if collision.get_collider() != null:
-				if collision.get_collider().is_in_group("enemy") :
-					collision.get_collider().enemyPoison(poisonDamage)
-				else: pass
+		if contactPoison:
+			for i in get_slide_collision_count():
+				var collision = get_slide_collision(i)
+				if collision.get_collider() != null:
+					if collision.get_collider().is_in_group("enemy") :
+						collision.get_collider().enemyPoison(poisonDamage)
+					else: pass
 				
 		get_input()
 		if screenShake:
@@ -265,9 +267,21 @@ func playerHit(dmg, isBullet):
 				defB.global_position = global_position
 				call_deferred("add_child", defB)
 				defB.look_at(Vector2i(randi_range(-3000,3000),randi_range(-3000,3000)))
-			else: InventoryHandler.playerCurHealth -= tempDMG
-		else: InventoryHandler.playerCurHealth -= tempDMG
-	else: InventoryHandler.playerCurHealth -= tempDMG
+			else:
+				if canHurt: 
+					InventoryHandler.playerCurHealth -= tempDMG
+					canHurt = false
+					$hurtTimer.start()
+		else: 
+			if canHurt: 
+				InventoryHandler.playerCurHealth -= tempDMG
+				canHurt = false
+				$hurtTimer.start()
+	else: 
+		if canHurt: 
+			InventoryHandler.playerCurHealth -= tempDMG
+			canHurt = false
+			$hurtTimer.start()
 		
 	
 	
@@ -275,7 +289,9 @@ func playerHit(dmg, isBullet):
 
 func updateHP():
 	healthBar.value = InventoryHandler.playerCurHealth
-	
+	print(InventoryHandler.playerCurHealth)
+	if InventoryHandler.playerCurHealth <=0 :
+		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
 
 		
 		
@@ -304,3 +320,7 @@ func _on_slime_timer_timeout():
 
 func _on_attack_timer_timeout():
 	canAttack = true
+
+
+func _on_hurt_timer_timeout():
+	canHurt = true

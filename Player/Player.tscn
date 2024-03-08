@@ -233,5 +233,10 @@ stream = ExtResource("11_i80gd")
 [node name="Swing3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_jdv86")
 
+[node name="hurtTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="slimeTimer" to="." method="_on_slime_timer_timeout"]
 [connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]
