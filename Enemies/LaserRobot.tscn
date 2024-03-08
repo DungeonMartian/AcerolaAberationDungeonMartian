@@ -81,6 +81,7 @@ isRanged = true
 speed = 20.0
 maxSpeed = 100.0
 reloadTimer = 2.0
+shotSpeed = 300.0
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]

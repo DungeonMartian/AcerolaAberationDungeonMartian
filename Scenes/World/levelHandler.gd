@@ -7,7 +7,7 @@ var curLoop : int = 0
 
 @onready var passiveEnemy = preload("res://AcerolaAberationDungeonMartian/Enemies/Scientist.tscn")
 @onready var securityBot = preload("res://AcerolaAberationDungeonMartian/Enemies/LaserRobot.tscn")
-var armyGuy
+@onready var armyGuy = preload("res://AcerolaAberationDungeonMartian/Enemies/armyMan.tscn")
 
 
 func nextLevel():
@@ -30,7 +30,7 @@ func get_enemy():
 		toReturn = securityBot
 
 	elif i == 2:
-		toReturn = passiveEnemy
+		toReturn = armyGuy
 	else:
 		toReturn = passiveEnemy
 	#print(toReturn)

@@ -17,6 +17,7 @@ var poisonQuant : float = 0
 @export var speed : float
 @export var maxSpeed : float
 @export var reloadTimer : float
+@export var shotSpeed : float
 @onready var canShootArea = $canShootArea
 @onready var poisonTimer = $poisonTimer
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
@@ -69,6 +70,7 @@ func tryFire():
 		bul.global_position = global_position
 		get_parent().add_child(bul)
 		bul.look_at(player.global_position)
+		bul.speed = shotSpeed
 		shootTimer.start(reloadTimer)
 		if !sprite.get_animation() == "attack":
 			sprite.set_animation("attack") 

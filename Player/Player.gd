@@ -56,6 +56,9 @@ var upgradesHas = InventoryHandler.upgrades
 
 
 func _ready():
+	if LevelHandler.curLevel ==7 || LevelHandler.curLoop >1:
+		var grey = Color (0.3, 0.3, 0.3, 1)
+		light.set_color(grey)
 	randomize()
 	getUpgrades()
 	modSpeed = speed
