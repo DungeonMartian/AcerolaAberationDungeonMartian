@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=30 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
@@ -7,8 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://47wnrfimjntm" path="res://AcerolaAberationDungeonMartian/Assets/player/l1_Aberration1.png" id="4_pbmdu"]
 [ext_resource type="Texture2D" uid="uid://bjkenf7wf4pmk" path="res://AcerolaAberationDungeonMartian/Assets/player/SlimeBod.png" id="9_mx22o"]
 [ext_resource type="Texture2D" uid="uid://ctbsh7877niu4" path="res://AcerolaAberationDungeonMartian/Assets/player/SpiderLegs.png" id="10_osmof"]
+[ext_resource type="AudioStream" uid="uid://wehg4e2x8ra5" path="res://AcerolaAberationDungeonMartian/Assets/Audio/movement-swipe-whoosh-1-186575.mp3" id="10_vrr2i"]
 [ext_resource type="Texture2D" uid="uid://xbbsp8a7u6w1" path="res://AcerolaAberationDungeonMartian/Assets/player/TentacleArmSmall.png" id="11_dlkgu"]
+[ext_resource type="AudioStream" uid="uid://bggnxffo6bdkf" path="res://AcerolaAberationDungeonMartian/Assets/Audio/movement-swipe-whoosh-3-186577.mp3" id="11_i80gd"]
 [ext_resource type="Texture2D" uid="uid://cgp6s36jw6qtc" path="res://AcerolaAberationDungeonMartian/Assets/player/BodyFeelers.png" id="12_ipsnj"]
+[ext_resource type="AudioStream" uid="uid://hgs66244kwvt" path="res://AcerolaAberationDungeonMartian/Assets/Audio/swing-whoosh-weapon-1-189819.mp3" id="12_jdv86"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_id36a"]
 atlas = ExtResource("9_mx22o")
@@ -220,6 +223,15 @@ position = Vector2(-11, 0)
 [node name="attackTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Swing1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vrr2i")
+
+[node name="Swing2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_i80gd")
+
+[node name="Swing3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_jdv86")
 
 [connection signal="timeout" from="slimeTimer" to="." method="_on_slime_timer_timeout"]
 [connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]

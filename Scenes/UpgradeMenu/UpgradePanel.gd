@@ -60,7 +60,10 @@ func _ready():
 
 func _on_button_pressed():
 	InventoryHandler.upgrades[upgradeToGo] = 1
-	get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
+	if LevelHandler.curLevel != 7:
+		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
+	elif LevelHandler.curLevel == 7:
+		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/nuclearSplash.tscn")
 	InventoryHandler.improve()
 	#progress scene
 

@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbh31tth6suv1"]
+
+[ext_resource type="Texture2D" uid="uid://i6sq0nnqv0h" path="res://AcerolaAberationDungeonMartian/Assets/Bgs/NuclearSplash.png" id="1_w3wdh"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/nuclearSplash.gd" id="2_h0ys1"]
+[ext_resource type="AudioStream" uid="uid://craltaihiatvx" path="res://AcerolaAberationDungeonMartian/Assets/Audio/explosion-47821.mp3" id="3_rabh6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrwkn"]
+atlas = ExtResource("1_w3wdh")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh7iq"]
+atlas = ExtResource("1_w3wdh")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ambep"]
+atlas = ExtResource("1_w3wdh")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3jwn"]
+atlas = ExtResource("1_w3wdh")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpqsc"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_yrwkn")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_sh7iq")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_ambep")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_x3jwn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="NuclearSplash" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_tpqsc")
+autoplay = "default"
+centered = false
+script = ExtResource("2_h0ys1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rabh6")
+
+[node name="endTimer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="endTimer" to="." method="_on_end_timer_timeout"]

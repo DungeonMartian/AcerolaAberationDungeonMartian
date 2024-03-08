@@ -83,7 +83,15 @@ func get_input():
 	
 	if Input.is_action_just_pressed("attack"):
 		if canAttack:
-			
+			var i = randi_range(0,2)
+			match i:
+				0:
+					$Swing1.play()
+				1:
+					$Swing2.play()
+				2:
+					$Swing3.play()
+				_: pass
 			var at = regAttack.instantiate()
 			#var at = smallAttack.instantiate()
 			at.damage = damage
