@@ -3,7 +3,7 @@ extends Node
 
 var curLevel : int = 6
 var enemyQuant : int = 10
-var curLoop : int = 0
+var curLoop : int = 1
 
 @onready var passiveEnemy = preload("res://AcerolaAberationDungeonMartian/Enemies/Scientist.tscn")
 @onready var securityBot = preload("res://AcerolaAberationDungeonMartian/Enemies/LaserRobot.tscn")

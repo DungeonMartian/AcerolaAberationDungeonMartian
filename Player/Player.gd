@@ -214,7 +214,7 @@ func getUpgrades():
 		set_scale(Vector2(1.2,1.2))
 		armour += 1
 		speed -= 5
-		maxSpeed -= 15
+		maxSpeed -= 10
 		$Sprite2D/Node2D/Pulmonatization.visible = true
 	if upgradesHas.get("Mucopolysaccharide" ) ==1 :
 		poisonTrail = true
@@ -223,7 +223,7 @@ func getUpgrades():
 		set_scale(Vector2(1.2,1.2))
 		armour += 1
 		speed -= 5
-		maxSpeed -= 15
+		maxSpeed -= 10
 		
 	if upgradesHas.get("Radula" ) ==1 :
 		hasRadula = true
@@ -254,6 +254,19 @@ func getUpgrades():
 		frogLegs = true
 	if upgradesHas.get("Toxic" ) ==1 :
 		poisonDamage += 5
+	
+	for i in InventoryHandler.loopUpgrades:
+			print(i)
+		#if i != null:
+			var upg = InventoryHandler.loopUpgrades.get(i)
+			print(upg)
+			if upg == 1:
+				InventoryHandler.playerMaxHealth += 1
+				InventoryHandler.playerCurHealth += 1
+		
+	print(InventoryHandler.playerMaxHealth)
+	print(InventoryHandler.playerCurHealth)
+		
 
 	
 

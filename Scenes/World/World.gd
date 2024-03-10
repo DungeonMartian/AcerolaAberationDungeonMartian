@@ -2,15 +2,16 @@ extends Node2D
 
 @onready var hpPick = preload("res://AcerolaAberationDungeonMartian/Pickups/healthPickup.tscn")
 
-#second boss
+
 @onready var bossMech = preload("res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn")
+#second boss
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasModulate.visible = true
 	match LevelHandler.curLoop:
 		0:
 			match LevelHandler.curLevel:
-			
 				2:
 					$MusicContainer/Stage2.play()
 				3:

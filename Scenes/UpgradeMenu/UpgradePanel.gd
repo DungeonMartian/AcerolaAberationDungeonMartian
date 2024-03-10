@@ -47,7 +47,7 @@ func setUpgrade(upgradeToSet):
 		"Bufonidaemorphism":
 			helperLabel.set_text("Increased movement")
 		_:
-			helperLabel.set_text("You fucked up")
+			helperLabel.set_text("Redacted.")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,7 +59,46 @@ func _ready():
 
 
 func _on_button_pressed():
-	InventoryHandler.upgrades[upgradeToGo] = 1
+	match upgradeToGo:
+		"Tentaclular Brachium":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Long Tentacles":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Sharp Tentacles":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Haptic Perception":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Omniscience":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Occular Degeneration":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Pulmonatization":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"ExoSkeleton":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Mucopolysaccharide":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Radula":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Extra Tooth":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Neurotoxin Poison":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Arachnopod":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Apex Predator":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"All Terrain":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Aposematism":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Toxic":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		"Bufonidaemorphism":
+			InventoryHandler.upgrades[upgradeToGo] = 1
+		_:
+			InventoryHandler.loopUpgrades[upgradeToGo] = 1
+	
 	if LevelHandler.curLevel != 7:
 		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
 	elif LevelHandler.curLevel == 7:

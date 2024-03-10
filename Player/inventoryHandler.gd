@@ -1,12 +1,21 @@
 extends Node
 
 var upgrades = {"Tentaclular Brachium" = 0, "Haptic Perception" = 0, Pulmonatization = 0, Radula = 0, Arachnopod = 0, Aposematism = 0}
+var loopUpgrades= {}
+var characters = 'abcdefghijklmnopqrstuvwxyz'
 var playerMaxHealth : float = 25
 var playerCurHealth : float = 25
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
  
+func generate_word(chars, length):
+	var word: String
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi()% n_char]
+	return word
+
 func improve():
 	if upgrades.get("Tentaclular Brachium" ) ==1 :
 		if upgrades.get("Long Tentacles" ) !=1 && upgrades.get("Sharp Tentacles" ) !=1 :
@@ -38,6 +47,9 @@ func improve():
 			upgrades["Toxic"] = 0
 			upgrades["Bufonidaemorphism"] = 0
 		pass
+	if LevelHandler.curLoop >=1:
+		var toAdd = generate_word(characters, randi_range(4,10))
+		loopUpgrades[toAdd] = 0
 	#print(upgrades)
 	pass
 

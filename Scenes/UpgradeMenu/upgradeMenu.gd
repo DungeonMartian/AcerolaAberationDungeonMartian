@@ -11,6 +11,11 @@ func _ready():
 		var value =  InventoryHandler.upgrades[key]
 		if value == 0:
 			possibleUpgrades.append (key)
+	if InventoryHandler.loopUpgrades != null:
+		for key in InventoryHandler.loopUpgrades:
+			var val = InventoryHandler.loopUpgrades[key]
+			if val == 0:
+				possibleUpgrades.append (key)
 		
 	for g in $PanelHolder.get_children():
 		#print("hello")

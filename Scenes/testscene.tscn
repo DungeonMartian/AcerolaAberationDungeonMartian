@@ -7,8 +7,6 @@
 
 [node name="mechBoss" parent="." instance=ExtResource("1_8ma0g")]
 position = Vector2(68, 181)
-reloadTimer = 0.4
-shotSpeed = 60.0
 
 [node name="Player" parent="." instance=ExtResource("2_563p7")]
 position = Vector2(-68, 188)
