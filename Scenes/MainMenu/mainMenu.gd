@@ -10,7 +10,6 @@ func _ready():
 	LevelHandler.curLevel =1 
 	LevelHandler.curLoop = 0
 	LevelHandler.enemyQuant = 10
-	LevelHandler.boss6 = true
 	#print(InventoryHandler.upgrades)
 
 func _physics_process(delta):

@@ -14,7 +14,12 @@ one_shot = true
 
 [node name="poisonTimer" type="Timer" parent="."]
 
+[node name="hurtTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="timeout" from="reloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="poisonTimer" to="." method="_on_poison_timer_timeout"]
+[connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]

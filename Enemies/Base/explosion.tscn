@@ -1,24 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl0t1co4nserj"]
+[gd_scene load_steps=12 format=3 uid="uid://cl0t1co4nserj"]
 
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_d8wby"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/Base/explosion.gd" id="1_wb0di"]
+[ext_resource type="Texture2D" uid="uid://dfjn07ju851t4" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/Explodion.png" id="2_cbrt1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wakfd"]
 radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1jm7"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8nu8"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4kut"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3eia"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5ypb"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4khwy"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(200, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwamc"]
+atlas = ExtResource("2_cbrt1")
+region = Rect2(240, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0kntw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1jm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8nu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4kut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3eia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5ypb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4khwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwamc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="Explosion" type="Area2D"]
 script = ExtResource("1_wb0di")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.43305, 1.43305)
 shape = SubResource("CircleShape2D_wakfd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.22, 0.22)
-texture = ExtResource("1_d8wby")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.7
 one_shot = true
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0kntw")
+autoplay = "default"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

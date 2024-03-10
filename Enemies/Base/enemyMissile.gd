@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var shoot:bool = false
-var damage:int = 1
+var damage:int = 5
 var speed :float =20
 var maxSpeedX : float = 80
 var maxSpeedY : float = 80
@@ -9,10 +9,13 @@ var hp : float = 20
 
 var location
 var direction
-
+var oneshot : bool = true
 @onready var explosion = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/explosion.tscn")
 
 func _ready():
+	
+	
+	$Timer.start(randi_range(8,12))
 	if InventoryHandler.upgrades.get("Omniscience" ) ==1:
 		speed *= .75
 		maxSpeedX *= .75
@@ -21,6 +24,10 @@ func _ready():
 
 func _physics_process(delta):
 	direction = global_position.direction_to(location)
+	if oneshot:
+		velocity = Vector2(40,40) * direction
+		oneshot = false
+	#direction = global_position.direction_to(location)
 	look_at(global_position -velocity)
 	velocity += direction * speed * delta
 	velocity.x = clamp(velocity.x, -maxSpeedX, maxSpeedX)

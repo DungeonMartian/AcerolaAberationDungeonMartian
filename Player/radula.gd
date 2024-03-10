@@ -48,9 +48,10 @@ func fire():
 		
 
 func _on_body_entered(body):
-	if body.is_in_group("enemy"):
-		var dir = global_position.direction_to(body.global_position)
-		body.enemyHit(damage, dir)
-		if poisonDamage > 0:
-			body.enemyPoison(poisonDamage)
+	if fired:
+		if body.is_in_group("enemy"):
+			var dir = global_position.direction_to(body.global_position)
+			body.enemyHit(damage, dir)
+			if poisonDamage > 0:
+				body.enemyPoison(poisonDamage)
 

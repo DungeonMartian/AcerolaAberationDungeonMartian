@@ -272,23 +272,25 @@ func playerHit(dmg, isBullet):
 				if canHurt: 
 					InventoryHandler.playerCurHealth -= tempDMG
 					canHurt = false
-					$hurtTimer.start(.2)
+					$hurtTimer.start(.1)
 		else: 
 			if canHurt: 
 				InventoryHandler.playerCurHealth -= tempDMG
 				canHurt = false
-				$hurtTimer.start(.2)
+				$hurtTimer.start(.1)
 	else: 
 		if canHurt: 
 			InventoryHandler.playerCurHealth -= tempDMG
 			canHurt = false
-			$hurtTimer.start(.2)
+			$hurtTimer.start(.1)
 		
 	
 	
 	updateHP()
 
 func updateHP():
+	if InventoryHandler.playerCurHealth > InventoryHandler.playerMaxHealth:
+		InventoryHandler.playerCurHealth = InventoryHandler.playerMaxHealth
 	healthBar.value = InventoryHandler.playerCurHealth
 	#print(InventoryHandler.playerCurHealth)
 	if InventoryHandler.playerCurHealth <=0 :

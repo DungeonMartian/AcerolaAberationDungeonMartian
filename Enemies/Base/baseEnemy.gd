@@ -7,9 +7,11 @@ var isInRange : bool = false
 var dying : bool = false
 var canShoot : bool = true
 var looped : bool
+var canhurt: bool = true
 
 var poisonQuant : float = 0
 
+@export var canMove : bool = true
 @export var damage : float
 @export var health : float
 @export var passive : bool
@@ -23,7 +25,7 @@ var poisonQuant : float = 0
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
 @onready var shootTimer = $reloadTimer
 @export var sprite : AnimatedSprite2D
-
+@onready var hurtTimer = $hurtTimer
 func _ready():
 	if LevelHandler.curLoop != 0:
 		damage+= LevelHandler.curLoop
@@ -102,11 +104,14 @@ func enemyPoison(poisonDamage):
 
 	
 func enemyHit(dmg, dir):
-	
-	health -= dmg
-	velocity = dir *( dmg *100)
-	move_and_slide()
-	checkHP()
+	if canhurt:
+		health -= dmg
+		if canMove:
+			velocity = dir *( dmg *100)
+		canhurt = false
+		hurtTimer.start()
+		move_and_slide()
+		checkHP()
 
 
 func _on_poison_timer_timeout():
@@ -132,3 +137,7 @@ func _on_player_detector_body_exited(body):
 		player = null
 		if sprite.get_animation() == "attack":
 			sprite.set_animation("default") 
+
+
+func _on_hurt_timer_timeout():
+	canhurt = true

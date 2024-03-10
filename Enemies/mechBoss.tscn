@@ -1,39 +1,81 @@
-[gd_scene load_steps=11 format=3 uid="uid://w5etlgljbkh4"]
+[gd_scene load_steps=17 format=3 uid="uid://w5etlgljbkh4"]
 
 [ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_wymf5"]
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="2_4w8kg"]
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/mechBoss.gd" id="2_ogssv"]
+[ext_resource type="Texture2D" uid="uid://d0a1x2vbnaw0f" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/mechBoss.png" id="3_wacbx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ras5x"]
 light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1eca"]
-size = Vector2(400, 400)
+size = Vector2(1000, 1000)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhyno"]
-size = Vector2(300, 300)
+size = Vector2(500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tpamj"]
-atlas = ExtResource("2_4w8kg")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2gv1"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(240, 0, 60, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq6en"]
-atlas = ExtResource("2_4w8kg")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfoi1"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbj5b"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh3n7"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(420, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b5ft"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq1us"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyb1x"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa2bl"]
+atlas = ExtResource("3_wacbx")
+region = Rect2(180, 0, 60, 60)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lmddb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tpamj")
+"texture": SubResource("AtlasTexture_b2gv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfoi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbj5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh3n7")
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bq6en")
+"texture": SubResource("AtlasTexture_4b5ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq1us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyb1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa2bl")
 }],
 "loop": true,
 "name": &"default",
@@ -41,18 +83,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aa603"]
-size = Vector2(40, 40)
+size = Vector2(29, 33)
 
 [node name="mechBoss" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_wymf5")]
 material = SubResource("CanvasItemMaterial_ras5x")
 script = ExtResource("2_ogssv")
-damage = 10.0
-health = 100.0
+canMove = false
+damage = 8.0
+health = 200.0
 isRanged = true
 speed = 10.0
 maxSpeed = 50.0
-reloadTimer = 0.5
-shotSpeed = 30.0
+reloadTimer = 0.4
+shotSpeed = 60.0
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
@@ -63,11 +106,11 @@ shape = SubResource("RectangleShape2D_yhyno")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
 position = Vector2(1.90735e-06, 4.76837e-07)
-scale = Vector2(0.3125, 0.3125)
 sprite_frames = SubResource("SpriteFrames_lmddb")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_aa603")
 
 [node name="missileTimer" type="Timer" parent="." index="6"]
@@ -77,12 +120,19 @@ autostart = true
 [node name="missileContainer" type="Node2D" parent="." index="7"]
 
 [node name="Node2D" type="Node2D" parent="missileContainer" index="0"]
-position = Vector2(-19, -6)
+position = Vector2(-20, -21)
+rotation = 0.0678512
 
-[node name="Node2D2" type="Node2D" parent="missileContainer" index="1"]
-position = Vector2(0, -19)
+[node name="Node2D4" type="Node2D" parent="missileContainer" index="1"]
+position = Vector2(-15, -20)
+rotation = 0.559809
 
-[node name="Node2D3" type="Node2D" parent="missileContainer" index="2"]
-position = Vector2(19, -6)
+[node name="Node2D2" type="Node2D" parent="missileContainer" index="2"]
+position = Vector2(14, -21)
+rotation = -1.14072
+
+[node name="Node2D3" type="Node2D" parent="missileContainer" index="3"]
+position = Vector2(19, -20)
+rotation = -0.0899968
 
 [connection signal="timeout" from="missileTimer" to="." method="_on_missile_timer_timeout"]
