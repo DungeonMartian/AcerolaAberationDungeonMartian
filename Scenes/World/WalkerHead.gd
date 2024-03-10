@@ -13,5 +13,8 @@ func _ready():
 		#	child.TileReplacer(tilemap)
 		elif child.has_method("SpawnPlayer"):
 			child.SpawnPlayer(tilemap)
+		else:
+				$bossTilePlacer.bossTiles(tilemap)
+
 
 

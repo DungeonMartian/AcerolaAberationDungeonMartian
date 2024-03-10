@@ -86,7 +86,7 @@ func checkHP():
 	if health <0:
 		if !dying:
 			dying = true
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(.5).timeout
 			var i = randi_range(0, 4)
 			if i == 1:
 				get_parent().spawnLoot(global_position)
@@ -104,13 +104,13 @@ func enemyPoison(poisonDamage):
 func enemyHit(dmg, dir):
 	
 	health -= dmg
-	velocity = dir *( dmg * 500)
+	velocity = dir *( dmg *100)
 	move_and_slide()
 	checkHP()
 
 
 func _on_poison_timer_timeout():
-	poisonQuant -=1
+	poisonQuant -=5
 	health -= 1
 	
 	checkHP()

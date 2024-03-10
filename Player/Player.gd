@@ -7,7 +7,7 @@ var maxSpeed: float = 150
 var modSpeed : float
 var modMaxSpeed : float
 var armour :float = 0
-var damage : float = 1
+var damage : float = 10
 var poisonDamage : float = 0
 var deflectPercent : float = 0
 var swingRate : float = 1
@@ -21,7 +21,7 @@ var mousePos :Vector2
 var attacking : bool = false
 var canAttack : bool = true
 var canDeflect : bool = false
-var canHurt : bool = true
+var canHurt : bool = false
 
 
 #preloads
@@ -193,7 +193,7 @@ func getUpgrades():
 		$Sprite2D/Node2D/Tentacles.visible = true
 		hasTent  = true
 	if upgradesHas.get("Sharp Tentacles" ) ==1 :
-		damage += 2
+		damage += 5
 	if upgradesHas.get("Long Tentacles" ) ==1 :
 		hasLongTent = true
 		
@@ -218,7 +218,7 @@ func getUpgrades():
 		$Sprite2D/Node2D/Pulmonatization.visible = true
 	if upgradesHas.get("Mucopolysaccharide" ) ==1 :
 		poisonTrail = true
-		poisonDamage +=1
+		poisonDamage +=5
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
 		set_scale(Vector2(1.2,1.2))
 		armour += 1
@@ -229,7 +229,7 @@ func getUpgrades():
 		hasRadula = true
 	if upgradesHas.get("Neurotoxin Poison" ) ==1 :
 		neuroToxic = true
-		poisonDamage +=2
+		poisonDamage +=5
 	if upgradesHas.get("Extra Tooth" ) ==1 :
 		hasExtra = true
 
@@ -241,19 +241,19 @@ func getUpgrades():
 		speed +=3
 		maxSpeed +=10
 	if upgradesHas.get("Apex Predator" ) ==1 :
-		damage +=2
+		damage +=5
 
 	if upgradesHas.get("Aposematism" ) ==1 :
-		poisonDamage +=1
+		poisonDamage +=5
 		set_scale(Vector2(.9,.9))
 		$Sprite2D/Node2D/Aposematism.visible = true
 		contactPoison = true
 	if upgradesHas.get("Bufonidaemorphism" ) ==1 :
-		speed +=5
-		maxSpeed +=15
+		speed +=10
+		maxSpeed +=30
 		frogLegs = true
 	if upgradesHas.get("Toxic" ) ==1 :
-		poisonDamage += 2
+		poisonDamage += 5
 
 	
 
@@ -272,17 +272,17 @@ func playerHit(dmg, isBullet):
 				if canHurt: 
 					InventoryHandler.playerCurHealth -= tempDMG
 					canHurt = false
-					$hurtTimer.start()
+					$hurtTimer.start(.2)
 		else: 
 			if canHurt: 
 				InventoryHandler.playerCurHealth -= tempDMG
 				canHurt = false
-				$hurtTimer.start()
+				$hurtTimer.start(.2)
 	else: 
 		if canHurt: 
 			InventoryHandler.playerCurHealth -= tempDMG
 			canHurt = false
-			$hurtTimer.start()
+			$hurtTimer.start(.2)
 		
 	
 	

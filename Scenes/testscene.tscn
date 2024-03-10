@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://p6rff5wt84qu"]
+
+[ext_resource type="PackedScene" uid="uid://w5etlgljbkh4" path="res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn" id="1_8ma0g"]
+[ext_resource type="PackedScene" uid="uid://csp3hdq2ndqbu" path="res://AcerolaAberationDungeonMartian/Player/Player.tscn" id="2_563p7"]
+
+[node name="Testscene" type="Node2D"]
+
+[node name="mechBoss" parent="." instance=ExtResource("1_8ma0g")]
+position = Vector2(266, 158)
+
+[node name="Player" parent="." instance=ExtResource("2_563p7")]
+position = Vector2(-68, 188)

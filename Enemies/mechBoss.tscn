@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://w5etlgljbkh4"]
+
+[ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_wymf5"]
+[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="2_4w8kg"]
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/mechBoss.gd" id="2_ogssv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ras5x"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1eca"]
+size = Vector2(400, 400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhyno"]
+size = Vector2(300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpamj"]
+atlas = ExtResource("2_4w8kg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq6en"]
+atlas = ExtResource("2_4w8kg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmddb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpamj")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq6en")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa603"]
+size = Vector2(40, 40)
+
+[node name="mechBoss" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_wymf5")]
+material = SubResource("CanvasItemMaterial_ras5x")
+script = ExtResource("2_ogssv")
+damage = 10.0
+health = 100.0
+isRanged = true
+speed = 10.0
+maxSpeed = 50.0
+reloadTimer = 0.5
+shotSpeed = 30.0
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
+shape = SubResource("RectangleShape2D_n1eca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="canShootArea" index="0"]
+shape = SubResource("RectangleShape2D_yhyno")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+position = Vector2(1.90735e-06, 4.76837e-07)
+scale = Vector2(0.3125, 0.3125)
+sprite_frames = SubResource("SpriteFrames_lmddb")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+shape = SubResource("RectangleShape2D_aa603")
+
+[node name="missileTimer" type="Timer" parent="." index="6"]
+wait_time = 8.0
+autostart = true
+
+[node name="missileContainer" type="Node2D" parent="." index="7"]
+
+[node name="Node2D" type="Node2D" parent="missileContainer" index="0"]
+position = Vector2(-19, -6)
+
+[node name="Node2D2" type="Node2D" parent="missileContainer" index="1"]
+position = Vector2(0, -19)
+
+[node name="Node2D3" type="Node2D" parent="missileContainer" index="2"]
+position = Vector2(19, -6)
+
+[connection signal="timeout" from="missileTimer" to="." method="_on_missile_timer_timeout"]

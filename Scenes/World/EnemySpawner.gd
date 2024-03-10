@@ -19,6 +19,7 @@ func spawnEnemies(node, playerLoc):
 		
 				if findMe != Vector2i(0,0):
 					#print("success")
+					
 					var en = LevelHandler.get_enemy()#.instantiate()
 					get_parent().get_parent().add_child.call_deferred(en)
 					en.position = node.map_to_local(Vector2i(xcoord,ycoord))

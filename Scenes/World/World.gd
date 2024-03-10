@@ -1,8 +1,12 @@
 extends Node2D
 
 @onready var hpPick = preload("res://AcerolaAberationDungeonMartian/Pickups/healthPickup.tscn")
+
+#second boss
+@onready var bossMech = preload("res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CanvasModulate.visible = true
 	match LevelHandler.curLoop:
 		0:
 			match LevelHandler.curLevel:
@@ -25,6 +29,10 @@ func _ready():
 					$MusicContainer/Stage1.play()
 		_:
 			$MusicContainer/Wasteland.play()
+	if LevelHandler.curLevel ==3 || LevelHandler.curLevel ==6:
+		var en = bossMech.instantiate()
+		add_child.call_deferred(en)
+		en.position = $TileMap.map_to_local(Vector2i(0,0))
 
 func spawnLoot(loc):
 	#this might roll if I can think of some

@@ -4,11 +4,12 @@ extends Node
 var curLevel : int = 6
 var enemyQuant : int = 10
 var curLoop : int = 0
+var boss6 : bool = true
 
 @onready var passiveEnemy = preload("res://AcerolaAberationDungeonMartian/Enemies/Scientist.tscn")
 @onready var securityBot = preload("res://AcerolaAberationDungeonMartian/Enemies/LaserRobot.tscn")
 @onready var armyGuy = preload("res://AcerolaAberationDungeonMartian/Enemies/armyMan.tscn")
-
+@onready var mechboss = preload("res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn")
 
 func nextLevel():
 	curLevel += 1
@@ -16,6 +17,7 @@ func nextLevel():
 	if curLevel ==8:
 		curLevel = 1
 		curLoop +=1
+		boss6  = true
 	
 
 
@@ -57,10 +59,16 @@ func get_enemy():
 			#wildlife
 		6:
 			var i = randi_range(0,1)
-			if i == 0:
-				toReturn = armyGuy
+			if boss6 == true:
+				boss6 = false
+				toReturn = mechboss
 			else:
-				toReturn = securityBot
+				if i == 0:
+					toReturn = armyGuy
+				else:
+					toReturn = securityBot
+			
+			
 			#wildlife
 			#add boss fight
 		7:
