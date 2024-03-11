@@ -1,5 +1,7 @@
 extends Node2D
 
+var findPlayer : bool = false
+
 @onready var hpPick = preload("res://AcerolaAberationDungeonMartian/Pickups/healthPickup.tscn")
 
 
@@ -42,3 +44,13 @@ func spawnLoot(loc):
 	add_child(pick)
 	
 
+func _physics_process(_delta):
+	if findPlayer == true:
+		var player = get_tree().get_nodes_in_group("player")[0]
+		get_tree().call_group("enemy", "findPlayer", player.global_position)
+		
+
+
+
+func _on_timer_timeout():
+	findPlayer = true

@@ -112,7 +112,8 @@ func get_input():
 			canAttack = false
 			
 	if Input.is_action_pressed("reload"):
-		get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
+		#get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
+		pass
 	if Input.is_action_just_pressed("airHorne"):
 		horn.play()
 		Shake(.1)
@@ -138,6 +139,8 @@ func _physics_process(delta):
 					child.flip_h = false
 				
 	time += delta*7
+	if dying:
+		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
 	if !dying:
 		if contactPoison:
 			for i in get_slide_collision_count():
@@ -153,7 +156,7 @@ func _physics_process(delta):
 			camera.offset.y = randf_range(-5,5)
 		if spinning:
 			sprite.rotation += rad_to_deg(0.004)
-			canHurt = false
+			#canHurt = false
 	
 	if frogLegs:
 		modSpeed = speed *(get_sine()+1)
@@ -215,18 +218,18 @@ func getUpgrades():
 		
 	if upgradesHas.get("Pulmonatization" ) ==1 :
 		set_scale(Vector2(1.2,1.2))
-		armour += 1
-		speed -= 5
-		maxSpeed -= 10
+		armour += 2
+		speed -= 3
+		maxSpeed -= 7
 		$Sprite2D/Node2D/Pulmonatization.visible = true
 	if upgradesHas.get("Mucopolysaccharide" ) ==1 :
 		poisonTrail = true
 		poisonDamage +=5
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
 		set_scale(Vector2(1.2,1.2))
-		armour += 1
-		speed -= 5
-		maxSpeed -= 10
+		armour += 2
+		speed -= 3
+		maxSpeed -= 7
 		
 	if upgradesHas.get("Radula" ) ==1 :
 		hasRadula = true
@@ -248,7 +251,7 @@ func getUpgrades():
 
 	if upgradesHas.get("Aposematism" ) ==1 :
 		poisonDamage +=5
-		set_scale(Vector2(.9,.9))
+		set_scale(Vector2(.95,.95))
 		$Sprite2D/Node2D/Aposematism.visible = true
 		contactPoison = true
 	if upgradesHas.get("Bufonidaemorphism" ) ==1 :
@@ -311,7 +314,9 @@ func updateHP():
 	healthBar.value = InventoryHandler.playerCurHealth
 	#print(InventoryHandler.playerCurHealth)
 	if InventoryHandler.playerCurHealth <=0 :
-		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
+		dying = true
+		#call_deferred("change_scene_to_file",("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn"))
+
 
 		
 		
@@ -324,10 +329,13 @@ func pickup(type, amount):
 		"health":
 			InventoryHandler.playerCurHealth += amount
 			updateHP()
+			$HeartPick.play()
 		"key":
 			InventoryHandler.curKeys +=amount
+			$KeyPick.play()
 		_:
 			print("uh oh")
+	$Camera2D/Label.text = str(InventoryHandler.curKeys)
 	
 
 func _on_slime_timer_timeout():

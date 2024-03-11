@@ -20,12 +20,17 @@ var poisonQuant : float = 0
 @export var maxSpeed : float
 @export var reloadTimer : float
 @export var shotSpeed : float
+@onready var rayCast = $aim/RayCast2D
+@onready var raycast2 = $aim/RayCast2D2
+@onready var aim = $aim
 @onready var canShootArea = $canShootArea
 @onready var poisonTimer = $poisonTimer
 @onready var bullet = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyBullet.tscn")
 @onready var shootTimer = $reloadTimer
 @export var sprite : AnimatedSprite2D
 @onready var hurtTimer = $hurtTimer
+@onready var navAgent = $NavigationAgent2D
+
 func _ready():
 	if LevelHandler.curLoop != 0:
 		damage+= LevelHandler.curLoop
@@ -35,7 +40,8 @@ func _ready():
 func _physics_process(_delta):
 	if ! dying:
 		if player != null:
-			direction = global_position.direction_to(player.global_position)
+			direction = to_local(navAgent.get_next_path_position()).normalized()
+			#direction = global_position.direction_to(player.global_position)
 			
 			if passive:
 				runAway()
@@ -53,10 +59,22 @@ func _physics_process(_delta):
 	velocity.y = clamp(velocity.y, -maxSpeed, maxSpeed)
 	move_and_slide()
 
+func findPlayer(playerLoc):
+	if player != null:
+		aim.look_at(playerLoc)
+		navAgent.target_position = playerLoc
+	pass
+
+
 func moveTowards():
 	if canShootArea.overlaps_body(player):
-		tryFire()
-		velocity = Vector2(0,0)
+		#print(rayCast.get_collider())
+		if rayCast.get_collider() == player && raycast2.get_collider() == player:
+			
+			tryFire()
+			velocity = Vector2(0,0)
+		else:
+			velocity += direction * speed
 	else:
 		velocity += direction * speed
 	

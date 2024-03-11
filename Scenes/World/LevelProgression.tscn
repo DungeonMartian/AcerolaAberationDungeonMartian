@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds47astxrhh03"]
+[gd_scene load_steps=17 format=3 uid="uid://ds47astxrhh03"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/LevelProgression.gd" id="1_8lq00"]
 [ext_resource type="Texture2D" uid="uid://cgehq2k4y3tkj" path="res://AcerolaAberationDungeonMartian/Assets/Tiles/warp portal.png" id="2_y2hhf"]
 [ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_y0awg"]
+[ext_resource type="AudioStream" uid="uid://d2d3m15kbck5l" path="res://AcerolaAberationDungeonMartian/Assets/Audio/vault-2-100077.mp3" id="4_vts7i"]
+[ext_resource type="AudioStream" uid="uid://c3j8lplrccv2l" path="res://AcerolaAberationDungeonMartian/Assets/Audio/distortion-29695.mp3" id="5_so2du"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecnxx"]
 size = Vector2(24, 24)
@@ -96,5 +98,13 @@ color = Color(0.188235, 0, 1, 1)
 energy = 0.6
 texture = ExtResource("3_y0awg")
 texture_scale = 0.6
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vts7i")
+
+[node name="PortalSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_so2du")
+volume_db = 10.0
+max_distance = 800.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

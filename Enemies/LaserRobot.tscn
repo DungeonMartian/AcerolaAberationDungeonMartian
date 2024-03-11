@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cv8aiajaoy1ip" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/LaserRobot.png" id="2_0e8ap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7jav"]
-size = Vector2(321, 287)
+size = Vector2(400, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq18n"]
-size = Vector2(270, 246)
+size = Vector2(250, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77x18"]
 size = Vector2(8, 11)
@@ -78,8 +78,8 @@ animations = [{
 damage = 4.0
 health = 20.0
 isRanged = true
-speed = 20.0
-maxSpeed = 100.0
+speed = 15.0
+maxSpeed = 80.0
 reloadTimer = 2.0
 shotSpeed = 300.0
 sprite = NodePath("AnimatedSprite2D")

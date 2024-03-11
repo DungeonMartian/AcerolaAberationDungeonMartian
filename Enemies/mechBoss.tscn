@@ -11,7 +11,7 @@ light_mode = 1
 size = Vector2(1000, 1000)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhyno"]
-size = Vector2(500, 500)
+size = Vector2(600, 600)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2gv1"]
 atlas = ExtResource("3_wacbx")
@@ -103,6 +103,7 @@ shape = SubResource("RectangleShape2D_n1eca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="canShootArea" index="0"]
 shape = SubResource("RectangleShape2D_yhyno")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
 position = Vector2(1.90735e-06, 4.76837e-07)

@@ -5,7 +5,10 @@ func _process(_delta):
 	
 	if InventoryHandler.curKeys >=3:
 		if $AnimatedSprite2D.get_animation() != "open":
+			$DoorOpen.play()
 			$AnimatedSprite2D.set_animation("open")
+			await get_tree().create_timer(.6).timeout
+			$PortalSounds.play()
 	
 
 

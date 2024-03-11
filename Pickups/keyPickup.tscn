@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfhxtompsixqa"]
+[gd_scene load_steps=10 format=3 uid="uid://dfhxtompsixqa"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Pickups/keyPickup.gd" id="1_s7002"]
 [ext_resource type="Texture2D" uid="uid://bulyb18agppt7" path="res://AcerolaAberationDungeonMartian/Assets/PickUps/keyCard.png" id="2_16x5u"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_ogq78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqjrw"]
 
@@ -50,5 +51,11 @@ shape = SubResource("RectangleShape2D_xqjrw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1vxhn")
 autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.242995, 0.242995)
+color = Color(1, 0.870588, 0, 1)
+energy = 0.4
+texture = ExtResource("3_ogq78")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

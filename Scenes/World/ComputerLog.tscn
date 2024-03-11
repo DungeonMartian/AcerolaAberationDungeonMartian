@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbknr2gs44xpm"]
+[gd_scene load_steps=6 format=3 uid="uid://dbknr2gs44xpm"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/ComputerLog.gd" id="1_fb2hl"]
+[ext_resource type="AudioStream" uid="uid://d1dvbw28akmsy" path="res://AcerolaAberationDungeonMartian/Assets/Audio/simple-notification-152054.mp3" id="2_wsjsa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wh6t"]
 size = Vector2(30, 30)
@@ -36,6 +37,9 @@ theme_override_font_sizes/font_size = 11
 text = "Nov 3rd - Facility, Undisclosed
 	I’ve asked for a shutdown of our program, but the government has demanded we continue our research. They believe that Abe can be used for untraceable assassinations. I pleaded with them, but it was no use."
 autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wsjsa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

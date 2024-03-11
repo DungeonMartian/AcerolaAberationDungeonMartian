@@ -152,3 +152,9 @@ stream = ExtResource("15_t4jlm")
 [node name="Stage8" type="AudioStreamPlayer" parent="MusicContainer"]
 stream = ExtResource("14_ljdvi")
 volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

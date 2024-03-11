@@ -8,7 +8,7 @@ func _ready():
 	tilemap = get_parent().get_node("TileMap")
 	for child in get_children():
 		if child.has_method("calculate_path"):
-			child.calculate_path(tilemap, 1000)
+			child.calculate_path(tilemap, 900)
 		#elif child.has_method("TileReplacer"):
 		#	child.TileReplacer(tilemap)
 		elif child.has_method("SpawnPlayer"):

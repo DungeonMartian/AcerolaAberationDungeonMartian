@@ -18,6 +18,21 @@ one_shot = true
 wait_time = 0.2
 autostart = true
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="aim" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="aim"]
+position = Vector2(2, -3)
+rotation = -1.57079
+target_position = Vector2(0, 500)
+
+[node name="RayCast2D2" type="RayCast2D" parent="aim"]
+position = Vector2(2, 3)
+rotation = -1.57079
+target_position = Vector2(0, 500)
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 [connection signal="timeout" from="reloadTimer" to="." method="_on_reload_timer_timeout"]
