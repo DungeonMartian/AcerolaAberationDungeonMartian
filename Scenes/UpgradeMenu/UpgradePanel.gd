@@ -45,7 +45,7 @@ func setUpgrade(upgradeToSet):
 		"Toxic":
 			helperLabel.set_text("Poison damage up")
 		"Bufonidaemorphism":
-			helperLabel.set_text("Increased movement")
+			helperLabel.set_text("Increased movement, frog legs")
 		_:
 			helperLabel.set_text("Redacted.")
 

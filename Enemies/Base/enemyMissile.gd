@@ -39,7 +39,7 @@ func _physics_process(delta):
 
 
 func hit(dmg):
-	print("hit")
+	#print("hit")
 	hp -= dmg
 	velocity *= -1
 	if hp <= 0:

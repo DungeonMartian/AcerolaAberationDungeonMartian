@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfhxtompsixqa"]
+
+[ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Pickups/keyPickup.gd" id="1_s7002"]
+[ext_resource type="Texture2D" uid="uid://bulyb18agppt7" path="res://AcerolaAberationDungeonMartian/Assets/PickUps/keyCard.png" id="2_16x5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqjrw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueraq"]
+atlas = ExtResource("2_16x5u")
+region = Rect2(0, 0, 22, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_butwb"]
+atlas = ExtResource("2_16x5u")
+region = Rect2(22, 0, 22, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lav4f"]
+atlas = ExtResource("2_16x5u")
+region = Rect2(44, 0, 22, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ikiw"]
+atlas = ExtResource("2_16x5u")
+region = Rect2(66, 0, 22, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vxhn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueraq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_butwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lav4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ikiw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="KeyPickup" type="Area2D"]
+script = ExtResource("1_s7002")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xqjrw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1vxhn")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

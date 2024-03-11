@@ -6,7 +6,7 @@ extends Node2D
 var toPrint : String
 
 func _ready():
-	var i = randi_range(0, 15)
+	var i = randi_range(0, 14)
 	match i:
 		1:
 			toPrint = "June 20th - Guyana, South America

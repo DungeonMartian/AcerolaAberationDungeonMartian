@@ -37,6 +37,7 @@ var canHurt : bool = false
 @onready var smallAttack = preload("res://AcerolaAberationDungeonMartian/Player/playerAttackSmall.tscn")
 @onready var attackTimer = $attackTimer
 @onready var healthBar = $Camera2D/ProgressBar
+@onready var swingbar = $Camera2D/ProgressBar2
 
 #upgrade unlocks
 var frogLegs : bool = false
@@ -100,6 +101,7 @@ func get_input():
 			#var at = smallAttack.instantiate()
 			at.damage = damage
 			Shake(.1)
+			swingbar.value = 0
 			add_child(at)
 			if hasTent:
 				at.set_scale(Vector2( 1.2,  1.2))
@@ -122,6 +124,7 @@ func get_input():
 		
 
 func _physics_process(delta):
+	swingbar.value+=(105 * delta)
 	if !attacking:
 		if velocity.x < 0:
 			if !sprite.flip_h == true:
@@ -255,17 +258,18 @@ func getUpgrades():
 	if upgradesHas.get("Toxic" ) ==1 :
 		poisonDamage += 5
 	
-	for i in InventoryHandler.loopUpgrades:
-			print(i)
-		#if i != null:
-			var upg = InventoryHandler.loopUpgrades.get(i)
-			print(upg)
-			if upg == 1:
-				InventoryHandler.playerMaxHealth += 1
-				InventoryHandler.playerCurHealth += 1
+	if InventoryHandler.loopUpgrades != null:
+		for i in InventoryHandler.loopUpgrades:
+				print(i)
+			#if i != null:
+				var upg = InventoryHandler.loopUpgrades.get(i)
+				print(upg)
+				if upg == 1:
+					InventoryHandler.playerMaxHealth += 1
+					InventoryHandler.playerCurHealth += 1
 		
-	print(InventoryHandler.playerMaxHealth)
-	print(InventoryHandler.playerCurHealth)
+	#print(InventoryHandler.playerMaxHealth)
+	#print(InventoryHandler.playerCurHealth)
 		
 
 	
@@ -320,12 +324,11 @@ func pickup(type, amount):
 		"health":
 			InventoryHandler.playerCurHealth += amount
 			updateHP()
+		"key":
+			InventoryHandler.curKeys +=amount
 		_:
 			print("uh oh")
 	
-	
-	pass
-
 
 func _on_slime_timer_timeout():
 	var s = slimeTrail.instantiate()

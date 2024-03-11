@@ -4,9 +4,11 @@ var time : float
 
 func _ready():
 	InventoryHandler.upgrades = null
+	InventoryHandler.loopUpgrades = {}
 	InventoryHandler.upgrades  = {"Tentaclular Brachium" = 0, "Haptic Perception" = 0, Pulmonatization = 0, Radula = 0, Arachnopod = 0, Aposematism = 0}
 	InventoryHandler.playerCurHealth = 25
 	InventoryHandler.playerMaxHealth = 25
+	InventoryHandler.curKeys = 0
 	LevelHandler.curLevel =1 
 	LevelHandler.curLoop = 0
 	LevelHandler.enemyQuant = 10

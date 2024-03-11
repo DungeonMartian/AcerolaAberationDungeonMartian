@@ -5,12 +5,13 @@ var loopUpgrades= {}
 var characters = 'abcdefghijklmnopqrstuvwxyz'
 var playerMaxHealth : float = 25
 var playerCurHealth : float = 25
+var curKeys : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
  
 func generate_word(chars, length):
-	var word: String
+	var word: String = ""
 	var n_char = len(chars)
 	for i in range(length):
 		word += chars[randi()% n_char]
@@ -51,7 +52,8 @@ func improve():
 		var toAdd = generate_word(characters, randi_range(4,10))
 		loopUpgrades[toAdd] = 0
 	#print(upgrades)
-	pass
+	curKeys = 0
+
 
 
 func switchWeapon():

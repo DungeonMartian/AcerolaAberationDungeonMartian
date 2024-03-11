@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=33 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
@@ -135,6 +135,18 @@ shadow_color = Color(0.788235, 1, 0, 0.0509804)
 shadow_size = 2
 shadow_offset = Vector2(-2, -2)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_21nih"]
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpkea"]
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0.521569, 0.521569, 0.521569, 0.133333)
+shadow_size = 2
+shadow_offset = Vector2(-2, -2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktiar"]
+bg_color = Color(1, 0, 0.513726, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_hsisq")
@@ -202,6 +214,18 @@ theme_override_styles/background = SubResource("StyleBoxFlat_grd27")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ii36m")
 max_value = 25.0
 value = 13.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_21nih")
+offset_left = -199.0
+offset_top = -91.0
+offset_right = -195.0
+offset_bottom = -64.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lpkea")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ktiar")
+value = 50.0
 fill_mode = 3
 show_percentage = false
 

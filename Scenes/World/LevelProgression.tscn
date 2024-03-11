@@ -1,10 +1,83 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds47astxrhh03"]
+[gd_scene load_steps=15 format=3 uid="uid://ds47astxrhh03"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Scenes/World/LevelProgression.gd" id="1_8lq00"]
-[ext_resource type="Texture2D" uid="uid://cp82vtms74o6l" path="res://icon.svg" id="1_ak8ko"]
+[ext_resource type="Texture2D" uid="uid://cgehq2k4y3tkj" path="res://AcerolaAberationDungeonMartian/Assets/Tiles/warp portal.png" id="2_y2hhf"]
+[ext_resource type="Texture2D" uid="uid://b0t7pwfd7wl1j" path="res://AcerolaAberationDungeonMartian/Assets/LightBubble/LightBubble.png" id="3_y0awg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecnxx"]
 size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1s8v"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbwlv"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lq4s"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rleg"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7es3c"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o073o"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq6op"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chalx"]
+atlas = ExtResource("2_y2hhf")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2w12p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1s8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbwlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lq4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rleg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7es3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o073o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq6op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chalx")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i4dfd"]
+light_mode = 1
 
 [node name="LevelProgression" type="Area2D"]
 script = ExtResource("1_8lq00")
@@ -12,9 +85,16 @@ script = ExtResource("1_8lq00")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ecnxx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_ak8ko")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2w12p")
+animation = &"open"
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_i4dfd")
+color = Color(0.188235, 0, 1, 1)
+energy = 0.6
+texture = ExtResource("3_y0awg")
+texture_scale = 0.6
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
