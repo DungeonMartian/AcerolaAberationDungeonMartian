@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bv4sjtxa3gwjl" path="res://AcerolaAberationDungeonMartian/Assets/player/SlimeTrail.png" id="2_wqh06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ns6sr"]
+size = Vector2(30, 30)
 
 [node name="PlayerSlime" type="Area2D"]
 script = ExtResource("1_p8n8f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_ns6sr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

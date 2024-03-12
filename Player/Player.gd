@@ -38,6 +38,8 @@ var canHurt : bool = false
 @onready var attackTimer = $attackTimer
 @onready var healthBar = $Camera2D/ProgressBar
 @onready var swingbar = $Camera2D/ProgressBar2
+@onready var deathMenu = $Camera2D/DeathMenu
+@onready var deathLabel = $Camera2D/DeathMenu/CenterContainer2/Label
 
 #upgrade unlocks
 var frogLegs : bool = false
@@ -80,49 +82,50 @@ func _ready():
 			toothPoint2.add_child(tooth2)
 
 func get_input():
-	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity += input_direction * modSpeed
-	
-	#mousePos = get_viewport().get_mouse_position()*3
-	mousePos = get_global_mouse_position()
-	
-	if Input.is_action_just_pressed("attack"):
-		if canAttack:
-			var i = randi_range(0,2)
-			match i:
-				0:
-					$Swing1.play()
-				1:
-					$Swing2.play()
-				2:
-					$Swing3.play()
-				_: pass
-			var at = regAttack.instantiate()
-			#var at = smallAttack.instantiate()
-			at.damage = damage
-			Shake(.1)
-			swingbar.value = 0
-			add_child(at)
-			if hasTent:
-				at.set_scale(Vector2( 1.2,  1.2))
-			if hasLongTent:
-				at.set_scale(Vector2( 1.5,  1.5))
-			at.look_at(mousePos)
-			attackTimer.start(swingRate)
-			canAttack = false
-			
-	if Input.is_action_pressed("reload"):
-		#get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
-		pass
-	if Input.is_action_just_pressed("airHorne"):
-		horn.play()
-		Shake(.1)
-	if Input.is_action_pressed("toothFire"):
-		for i in radulaPivot.get_children():
-			for g in i.get_children():
-				if g.has_method("fire"):
-					g.fire()
+	if !dying:
+		var input_direction = Input.get_vector("left", "right", "up", "down")
+		velocity += input_direction * modSpeed
 		
+		#mousePos = get_viewport().get_mouse_position()*3
+		mousePos = get_global_mouse_position()
+		
+		if Input.is_action_just_pressed("attack"):
+			if canAttack:
+				var i = randi_range(0,2)
+				match i:
+					0:
+						$Swing1.play()
+					1:
+						$Swing2.play()
+					2:
+						$Swing3.play()
+					_: pass
+				var at = regAttack.instantiate()
+				#var at = smallAttack.instantiate()
+				at.damage = damage
+				Shake(.1)
+				swingbar.value = 0
+				add_child(at)
+				if hasTent:
+					at.set_scale(Vector2( 1.2,  1.2))
+				if hasLongTent:
+					at.set_scale(Vector2( 1.5,  1.5))
+				at.look_at(mousePos)
+				attackTimer.start(swingRate)
+				canAttack = false
+				
+		if Input.is_action_pressed("reload"):
+			#get_parent().get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/World/World.tscn")
+			pass
+		if Input.is_action_just_pressed("airHorne"):
+			horn.play()
+			Shake(.1)
+		if Input.is_action_pressed("toothFire"):
+			for i in radulaPivot.get_children():
+				for g in i.get_children():
+					if g.has_method("fire"):
+						g.fire()
+			
 
 func _physics_process(delta):
 	swingbar.value+=(105 * delta)
@@ -140,7 +143,8 @@ func _physics_process(delta):
 				
 	time += delta*7
 	if dying:
-		get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
+		pass
+
 	if !dying:
 		if contactPoison:
 			for i in get_slide_collision_count():
@@ -218,7 +222,7 @@ func getUpgrades():
 		
 	if upgradesHas.get("Pulmonatization" ) ==1 :
 		set_scale(Vector2(1.2,1.2))
-		armour += 2
+		armour += 1
 		speed -= 3
 		maxSpeed -= 7
 		$Sprite2D/Node2D/Pulmonatization.visible = true
@@ -227,7 +231,7 @@ func getUpgrades():
 		poisonDamage +=5
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
 		set_scale(Vector2(1.2,1.2))
-		armour += 2
+		armour += 1
 		speed -= 3
 		maxSpeed -= 7
 		
@@ -315,6 +319,14 @@ func updateHP():
 	#print(InventoryHandler.playerCurHealth)
 	if InventoryHandler.playerCurHealth <=0 :
 		dying = true
+		deathMenu.visible = true
+		var toString : String = ""
+		toString += str(LevelHandler.curLevel) + (" of 6 stages cleared. ")
+		if LevelHandler.curLoop ==1:
+			toString += str(LevelHandler.curLoop) + " loop"
+		else:
+			toString += str(LevelHandler.curLoop) + " loops"
+		deathLabel.set_text(toString)
 		#call_deferred("change_scene_to_file",("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn"))
 
 
@@ -351,3 +363,8 @@ func _on_attack_timer_timeout():
 
 func _on_hurt_timer_timeout():
 	canHurt = true
+
+
+func _on_menu_button_pressed():
+	get_tree().change_scene_to_file("res://AcerolaAberationDungeonMartian/Scenes/MainMenu/mainMenu.tscn")
+	

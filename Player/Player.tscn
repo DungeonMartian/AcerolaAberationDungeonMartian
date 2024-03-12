@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://csp3hdq2ndqbu"]
+[gd_scene load_steps=39 format=3 uid="uid://csp3hdq2ndqbu"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Player/Player.gd" id="1_hsisq"]
 [ext_resource type="AudioStream" uid="uid://dc1khf81nctri" path="res://AcerolaAberationDungeonMartian/Assets/Audio/airhorn-6466.mp3" id="3_6si4i"]
@@ -153,6 +153,12 @@ bg_color = Color(1, 0, 0.513726, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ag0vg"]
 light_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pvbo7"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m7r57"]
+light_mode = 1
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_hsisq")
@@ -254,6 +260,72 @@ theme_override_font_sizes/font_size = 14
 text = "0"
 horizontal_alignment = 2
 
+[node name="Label2" type="Label" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_pvbo7")
+offset_left = 173.0
+offset_top = -100.0
+offset_right = 213.0
+offset_bottom = -77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "/3"
+
+[node name="DeathMenu" type="Panel" parent="Camera2D"]
+visible = false
+material = SubResource("CanvasItemMaterial_m7r57")
+offset_left = -132.0
+offset_top = -125.0
+offset_right = 118.0
+offset_bottom = -25.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Camera2D/DeathMenu"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Camera2D/DeathMenu/CenterContainer"]
+use_parent_material = true
+layout_mode = 2
+text = "Subject captured"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="Camera2D/DeathMenu"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Camera2D/DeathMenu/CenterContainer2"]
+use_parent_material = true
+layout_mode = 2
+text = "tests"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="Camera2D/DeathMenu"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MenuButton" type="Button" parent="Camera2D/DeathMenu/CenterContainer3"]
+use_parent_material = true
+layout_mode = 2
+text = "Main Menu"
+
 [node name="bewbewbwewbew" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6si4i")
 volume_db = -11.702
@@ -293,6 +365,7 @@ stream = ExtResource("14_bb07e")
 [node name="KeyPick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_w3uts")
 
+[connection signal="pressed" from="Camera2D/DeathMenu/CenterContainer3/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="timeout" from="slimeTimer" to="." method="_on_slime_timer_timeout"]
 [connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="hurtTimer" to="." method="_on_hurt_timer_timeout"]
