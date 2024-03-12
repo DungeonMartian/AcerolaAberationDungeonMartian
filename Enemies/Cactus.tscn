@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct7cw4mdtfaoa"]
+
+[ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_73ael"]
+[ext_resource type="Texture2D" uid="uid://brktxo4d8yevq" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/Cactus.png" id="2_2dbqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k8se"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x76ru"]
+atlas = ExtResource("2_2dbqi")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aohth"]
+atlas = ExtResource("2_2dbqi")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yn445"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x76ru")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aohth")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cactus" groups=["enemy"] instance=ExtResource("1_73ael")]
+walks = false
+damage = 5.0
+health = 15.0
+passive = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_4k8se")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="8"]
+sprite_frames = SubResource("SpriteFrames_yn445")
+autoplay = "default"

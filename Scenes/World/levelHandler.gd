@@ -1,14 +1,15 @@
 extends Node
 
 
-var curLevel : int = 6
+var curLevel : int = 4
 var enemyQuant : int = 10
-var curLoop : int = 1
+var curLoop : int = 0
 
 @onready var passiveEnemy = preload("res://AcerolaAberationDungeonMartian/Enemies/Scientist.tscn")
 @onready var securityBot = preload("res://AcerolaAberationDungeonMartian/Enemies/LaserRobot.tscn")
 @onready var armyGuy = preload("res://AcerolaAberationDungeonMartian/Enemies/armyMan.tscn")
 @onready var mechboss = preload("res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn")
+@onready var cactus = preload("res://AcerolaAberationDungeonMartian/Enemies/Cactus.tscn")
 
 func nextLevel():
 	curLevel += 1
@@ -30,7 +31,7 @@ func get_enemy():
 					else:
 						toReturn = passiveEnemy
 				2:
-					var i = randi_range(0,3)
+					var i = randi_range(0,2)
 					if i == 0:
 						toReturn = passiveEnemy
 					else:
@@ -43,23 +44,33 @@ func get_enemy():
 						toReturn = securityBot
 					#add boss fight
 				4:
-					var i = randi_range(0,1)
+					var i = randi_range(0,4)
 					if i == 0:
 						toReturn = armyGuy
+					if i == 1:
+						toReturn = cactus
+					if i == 2:
+						toReturn = cactus
 					else:
 						toReturn = securityBot
 					#wildlife
 				5:
-					var i = randi_range(0,1)
+					var i = randi_range(0,5)
 					if i == 0:
 						toReturn = armyGuy
+					if i == 1:
+						toReturn = armyGuy
+					if i == 2:
+						toReturn = cactus
 					else:
 						toReturn = securityBot
 					#wildlife
 				6:
-					var i = randi_range(0,1)
+					var i = randi_range(0,2)
 					if i == 0:
 						toReturn = armyGuy
+					if i == 1:
+						toReturn = cactus
 					else:
 						toReturn = securityBot
 					
@@ -67,16 +78,20 @@ func get_enemy():
 					#wildlife
 					#add boss fight
 				7:
-					var i = randi_range(0,1)
+					var i = randi_range(0,3)
 					if i == 0:
 						toReturn = armyGuy
+					if i == 1:
+						toReturn = armyGuy
+					if i == 2:
+						toReturn = cactus
 					else:
 						toReturn = securityBot
 				_:
 					print("fuck")
 					toReturn = passiveEnemy
 		_:
-			var i = randi_range(0,3)
+			var i = randi_range(0,4)
 			if i == 0:
 				toReturn = securityBot
 			if i == 1:
@@ -85,6 +100,8 @@ func get_enemy():
 				toReturn = mechboss
 			if i == 3:
 				toReturn = passiveEnemy
+			if i == 4:
+				toReturn = cactus
 			pass
 			
 	

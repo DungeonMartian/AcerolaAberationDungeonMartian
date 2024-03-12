@@ -11,6 +11,7 @@ var canhurt: bool = true
 
 var poisonQuant : float = 0
 
+@export var walks : bool = true
 @export var canMove : bool = true
 @export var damage : float
 @export var health : float
@@ -38,26 +39,39 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if ! dying:
-		if player != null:
-			direction = to_local(navAgent.get_next_path_position()).normalized()
-			#direction = global_position.direction_to(player.global_position)
-			
-			if passive:
-				runAway()
-			if !passive:
-				moveTowards()
-	elif dying:
-		velocity = Vector2(0,0)
-	if velocity.x < 0:
-		if !sprite.is_flipped_h():
-			sprite.set_flip_h(true)
-	elif velocity.x > 0 :
-		if sprite.is_flipped_h():
-			sprite.set_flip_h(false)
-	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
-	velocity.y = clamp(velocity.y, -maxSpeed, maxSpeed)
-	move_and_slide()
+	if !isRanged:
+		
+		for i in get_slide_collision_count():
+			print(i)
+			var collision = get_slide_collision(i)
+			if collision.get_collider() != null:
+				if collision.get_collider().is_in_group("player") :
+					collision.get_collider().playerHit(damage, false)
+				else: pass
+		if !walks:
+			velocity = Vector2(0,0)
+			move_and_slide()
+	if walks:
+		if ! dying:
+			if player != null:
+				direction = to_local(navAgent.get_next_path_position()).normalized()
+				#direction = global_position.direction_to(player.global_position)
+				
+				if passive:
+					runAway()
+				if !passive:
+					moveTowards()
+		elif dying:
+			velocity = Vector2(0,0)
+		if velocity.x < 0:
+			if !sprite.is_flipped_h():
+				sprite.set_flip_h(true)
+		elif velocity.x > 0 :
+			if sprite.is_flipped_h():
+				sprite.set_flip_h(false)
+		velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
+		velocity.y = clamp(velocity.y, -maxSpeed, maxSpeed)
+		move_and_slide()
 
 func findPlayer(playerLoc):
 	if player != null:
