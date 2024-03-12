@@ -115,7 +115,7 @@ anchor_right = 1.0
 offset_bottom = 92.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 11
-text = "The music used in this game is sourced from pixabay, is used transformatively and under license. The music is registered under youtube's content ID match, and may flag the stream. If this happens, this option can be enabled to disable the music."
+text = "The music used in this game is sourced from pixabay and is used transformatively and under license. The music is registered under youtube's content ID match, and may flag the stream. If this happens, this option can be enabled to disable the music."
 autowrap_mode = 3
 
 [node name="CheckButton" type="CheckButton" parent="Panel"]

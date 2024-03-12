@@ -36,7 +36,7 @@ func get_enemy():
 					else:
 						toReturn = securityBot
 				3:
-					var i = randi_range(0,1)
+					var i = randi_range(0,2)
 					if i == 0:
 						toReturn = armyGuy
 					else:
