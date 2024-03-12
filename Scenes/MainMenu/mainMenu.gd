@@ -26,6 +26,8 @@ func get_sine():
 	return sin(time*1) *1
 
 func _on_options_button_pressed():
+	$Panel.visible = !$Panel.visible
+	$cameraPan.visible = !$cameraPan.visible
 	pass # Replace with function body.
 
 
@@ -38,3 +40,12 @@ func _on_timer_timeout():
 	$PointLight2D2.visible = true
 	$PointLight2D.visible = true
 	$AudioStreamPlayer2.play()
+
+
+func _on_check_button_pressed():
+	InventoryHandler.isMuted = $Panel/CheckButton.button_pressed
+
+
+
+func _on_camera_button_pressed():
+	InventoryHandler.dontTrack = $cameraPan/cameraButton.button_pressed

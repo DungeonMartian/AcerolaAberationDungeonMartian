@@ -6,6 +6,9 @@ var characters = 'abcdefghijklmnopqrstuvwxyz'
 var playerMaxHealth : float = 25
 var playerCurHealth : float = 25
 var curKeys : int = 0
+var isMuted : bool = false
+var dontTrack: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

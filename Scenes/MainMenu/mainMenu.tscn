@@ -96,7 +96,79 @@ autoplay = true
 stream = ExtResource("5_6pnfn")
 volume_db = -10.0
 
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = 26.0
+offset_right = 562.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 11
+text = "The music used in this game is sourced from pixabay, is used transformatively and under license. The music is registered under youtube's content ID match, and may flag the stream. If this happens, this option can be enabled to disable the music."
+autowrap_mode = 3
+
+[node name="CheckButton" type="CheckButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -24.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="cameraPan" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 212.0
+offset_top = 130.0
+offset_right = 562.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="cameraPan"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 11
+text = "Disable camera tracking"
+autowrap_mode = 3
+
+[node name="cameraButton" type="CheckButton" parent="cameraPan"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -24.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/optionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Panel/CheckButton" to="." method="_on_check_button_pressed"]
+[connection signal="pressed" from="cameraPan/cameraButton" to="." method="_on_camera_button_pressed"]

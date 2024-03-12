@@ -166,7 +166,8 @@ func _physics_process(delta):
 		modSpeed = speed *(get_sine()+1)
 		modMaxSpeed = maxSpeed *(get_sine()+1)
 
-	camera.global_position = lerp(global_position, mousePos, delta*15)
+	if !InventoryHandler.dontTrack:
+		camera.global_position = lerp(global_position, mousePos, delta*15)
 
 	#look_at(mousePos)
 	
