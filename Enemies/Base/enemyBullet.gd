@@ -7,8 +7,8 @@ var speed :float =300
 
 
 func _ready():
-	if InventoryHandler.upgrades.get("Omniscience" ) ==1:
-		speed *= .75
+	
+		
 	set_as_top_level(true)
 
 func _physics_process(delta):

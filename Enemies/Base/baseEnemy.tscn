@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c875nkqkp0byg"]
+[gd_scene load_steps=3 format=3 uid="uid://c875nkqkp0byg"]
 
 [ext_resource type="Script" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.gd" id="1_mhtfj"]
+[ext_resource type="AudioStream" uid="uid://dew8jmel0jhuk" path="res://AcerolaAberationDungeonMartian/Assets/Audio/balloon-pop-2-190091.mp3" id="2_i7v5f"]
 
 [node name="BaseEnemy" type="CharacterBody2D"]
 script = ExtResource("1_mhtfj")
@@ -32,6 +33,11 @@ target_position = Vector2(0, 500)
 position = Vector2(2, 3)
 rotation = -1.57079
 target_position = Vector2(0, 500)
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i7v5f")
+volume_db = 3.0
+pitch_scale = 0.6
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

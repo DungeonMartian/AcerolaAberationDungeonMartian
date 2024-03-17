@@ -2,7 +2,7 @@ extends "res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.gd"
 
 
 @onready var missile = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/enemyMissile.tscn")
-
+@onready var explode = preload("res://AcerolaAberationDungeonMartian/Enemies/Base/explosion.tscn")
 
 func tryFire():
 	if canShoot:
@@ -15,14 +15,34 @@ func tryFire():
 		bul.global_position = global_position
 		get_parent().add_child(bul)
 		bul.look_at(player.global_position)
-		bul.speed = shotSpeed
+		if InventoryHandler.upgrades.get("Omniscience" ) ==1:
+			#bul.speed = .1
+			bul.speed = shotSpeed * .75
+		else: 
+			bul.speed = shotSpeed 
+		
 		shootTimer.start(reloadTimer)
 		if !sprite.get_animation() == "attack":
 			sprite.set_animation("attack") 
 			
 
 
-
+func checkHP():
+	if health <0:
+		if !dying:
+			dying = true
+			if !sprite.get_animation() == "dying":
+				sprite.set_animation("dying") 
+			for child in $ExplodeContainer.get_children():
+				var explo = explode.instantiate()
+				explo.global_position = child.global_position
+				await get_tree().create_timer(.1).timeout
+				get_parent().add_child(explo)
+			await get_tree().create_timer(.5).timeout
+			var i = randi_range(0, 4)
+			if i == 1:
+				get_parent().spawnLoot(global_position)
+			queue_free()
 
 
 func _on_missile_timer_timeout():

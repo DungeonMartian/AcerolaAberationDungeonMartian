@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxm85o2dbdqpt"]
+[gd_scene load_steps=16 format=3 uid="uid://dxm85o2dbdqpt"]
 
 [ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_t5xke"]
 [ext_resource type="Texture2D" uid="uid://cv8aiajaoy1ip" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/LaserRobot.png" id="2_0e8ap"]
+[ext_resource type="Texture2D" uid="uid://cth3eekkcx448" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/LaserRobot-2.png.png" id="3_lgmb2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7jav"]
 size = Vector2(400, 400)
@@ -40,6 +41,10 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("2_0e8ap")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi4lp"]
+atlas = ExtResource("3_lgmb2")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6smos"]
 animations = [{
 "frames": [{
@@ -72,6 +77,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi4lp")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 5.0
 }]
 
 [node name="BaseEnemy" node_paths=PackedStringArray("sprite") groups=["enemy"] instance=ExtResource("1_t5xke")]
@@ -98,5 +111,5 @@ shape = SubResource("RectangleShape2D_77x18")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_6smos")
-animation = &"attack"
+animation = &"dying"
 autoplay = "default"

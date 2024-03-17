@@ -15,8 +15,8 @@ func _ready():
 		match LevelHandler.curLoop:
 			0:
 				match LevelHandler.curLevel:
-					2:
-						$MusicContainer/Stage2.play()
+					#2:
+						#$MusicContainer/Stage2.play()
 					3:
 						$MusicContainer/BossAudio.play()
 					4:

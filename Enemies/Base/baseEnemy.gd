@@ -33,6 +33,7 @@ var poisonQuant : float = 0
 @onready var navAgent = $NavigationAgent2D
 
 func _ready():
+	
 	if LevelHandler.curLoop != 0:
 		damage+= LevelHandler.curLoop
 		health +=(LevelHandler.curLoop *3)
@@ -42,7 +43,7 @@ func _physics_process(_delta):
 	if !isRanged:
 		
 		for i in get_slide_collision_count():
-			print(i)
+			#print(i)
 			var collision = get_slide_collision(i)
 			if collision.get_collider() != null:
 				if collision.get_collider().is_in_group("player") :
@@ -106,7 +107,12 @@ func tryFire():
 		bul.global_position = global_position
 		get_parent().add_child(bul)
 		bul.look_at(player.global_position)
-		bul.speed = shotSpeed
+		if InventoryHandler.upgrades.get("Omniscience" ) ==1:
+			#bul.speed = .1
+			bul.speed = shotSpeed * .75
+		else: 
+			bul.speed = shotSpeed 
+			
 		shootTimer.start(reloadTimer)
 		if !sprite.get_animation() == "attack":
 			sprite.set_animation("attack") 
@@ -116,10 +122,11 @@ func _on_player_detector_body_entered(body):
 		player = body
 		
 func checkHP():
-
 	if health <0:
 		if !dying:
 			dying = true
+			if !sprite.get_animation() == "dying":
+				sprite.set_animation("dying") 
 			await get_tree().create_timer(.5).timeout
 			var i = randi_range(0, 4)
 			if i == 1:
@@ -135,15 +142,18 @@ func enemyPoison(poisonDamage):
 	sprite.modulate.b = 0
 
 	
-func enemyHit(dmg, dir):
+func enemyHit(dmg, dir, isRad):
 	if canhurt:
 		health -= dmg
+		$hit.play()
 		if canMove:
-			velocity = dir *( dmg *100)
-		canhurt = false
-		hurtTimer.start()
-		move_and_slide()
+			if !isRad:
+				velocity = dir *( dmg *100)
+				canhurt = false
+				hurtTimer.start()
+				move_and_slide()
 		checkHP()
+
 
 
 func _on_poison_timer_timeout():

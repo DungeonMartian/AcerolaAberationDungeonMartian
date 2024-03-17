@@ -11,6 +11,9 @@ var curLoop : int = 0
 @onready var mechboss = preload("res://AcerolaAberationDungeonMartian/Enemies/mechBoss.tscn")
 @onready var cactus = preload("res://AcerolaAberationDungeonMartian/Enemies/Cactus.tscn")
 
+func _ready():
+	randomize()
+
 func nextLevel():
 	curLevel += 1
 	enemyQuant +=1
@@ -44,12 +47,10 @@ func get_enemy():
 						toReturn = securityBot
 					#add boss fight
 				4:
-					var i = randi_range(0,4)
+					var i = randi_range(0,2)
 					if i == 0:
 						toReturn = armyGuy
-					if i == 1:
-						toReturn = cactus
-					if i == 2:
+					elif i == 1:
 						toReturn = cactus
 					else:
 						toReturn = securityBot
@@ -58,9 +59,9 @@ func get_enemy():
 					var i = randi_range(0,5)
 					if i == 0:
 						toReturn = armyGuy
-					if i == 1:
+					elif i == 1:
 						toReturn = armyGuy
-					if i == 2:
+					elif i == 2:
 						toReturn = cactus
 					else:
 						toReturn = securityBot
@@ -69,7 +70,7 @@ func get_enemy():
 					var i = randi_range(0,2)
 					if i == 0:
 						toReturn = armyGuy
-					if i == 1:
+					elif i == 1:
 						toReturn = cactus
 					else:
 						toReturn = securityBot
@@ -81,9 +82,9 @@ func get_enemy():
 					var i = randi_range(0,3)
 					if i == 0:
 						toReturn = armyGuy
-					if i == 1:
+					elif i == 1:
 						toReturn = armyGuy
-					if i == 2:
+					elif i == 2:
 						toReturn = cactus
 					else:
 						toReturn = securityBot
@@ -94,13 +95,13 @@ func get_enemy():
 			var i = randi_range(0,4)
 			if i == 0:
 				toReturn = securityBot
-			if i == 1:
+			elif i == 1:
 				toReturn = armyGuy
-			if i == 2:
+			elif i == 2:
 				toReturn = mechboss
-			if i == 3:
+			elif i == 3:
 				toReturn = passiveEnemy
-			if i == 4:
+			elif i == 4:
 				toReturn = cactus
 			pass
 			

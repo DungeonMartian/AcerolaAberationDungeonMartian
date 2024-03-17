@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0b7js1imfq46"]
+[gd_scene load_steps=11 format=3 uid="uid://c0b7js1imfq46"]
 
 [ext_resource type="PackedScene" uid="uid://c875nkqkp0byg" path="res://AcerolaAberationDungeonMartian/Enemies/Base/baseEnemy.tscn" id="1_of4iy"]
 [ext_resource type="Texture2D" uid="uid://ci342vm5ep7qp" path="res://AcerolaAberationDungeonMartian/Assets/Enemies/armySoldier1.png" id="2_poc7h"]
@@ -13,15 +13,23 @@ size = Vector2(300, 300)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0511j"]
 size = Vector2(11, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sclx4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cu73"]
 atlas = ExtResource("2_poc7h")
 region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqblb"]
+atlas = ExtResource("2_poc7h")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtnw4"]
+atlas = ExtResource("2_poc7h")
+region = Rect2(20, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_auisx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sclx4")
+"texture": SubResource("AtlasTexture_4cu73")
 }],
 "loop": true,
 "name": &"attack",
@@ -29,10 +37,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sclx4")
+"texture": SubResource("AtlasTexture_rqblb")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtnw4")
+}],
+"loop": true,
+"name": &"dying",
 "speed": 5.0
 }]
 
@@ -44,7 +60,7 @@ isRanged = true
 speed = 20.0
 maxSpeed = 80.0
 reloadTimer = 1.8
-shotSpeed = 150.0
+shotSpeed = 200.0
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
@@ -59,5 +75,4 @@ shape = SubResource("RectangleShape2D_0511j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_auisx")
-animation = &"attack"
 autoplay = "default"

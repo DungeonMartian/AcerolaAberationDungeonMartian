@@ -160,7 +160,7 @@ func _physics_process(delta):
 			camera.offset.y = randf_range(-5,5)
 		if spinning:
 			sprite.rotation += rad_to_deg(0.004)
-			#canHurt = false
+			canHurt = false
 	
 	if frogLegs:
 		modSpeed = speed *(get_sine()+1)
@@ -206,6 +206,8 @@ func getUpgrades():
 	if upgradesHas.get("Sharp Tentacles" ) ==1 :
 		damage += 5
 	if upgradesHas.get("Long Tentacles" ) ==1 :
+		$Sprite2D/Node2D/Tentacles.visible = false
+		$Sprite2D/Node2D/bigtent.visible = true
 		hasLongTent = true
 		
 	if upgradesHas.get("Haptic Perception" ) ==1 :
@@ -214,10 +216,13 @@ func getUpgrades():
 		canDeflect = true
 		deflectPercent += 30
 	if upgradesHas.get("Occular Degeneration" ) ==1 :
+		$Sprite2D/Node2D/noEyes.visible = true
 		light.scale = Vector2(0.4,0.4)  
 		canDeflect = true
 		deflectPercent += 30
 	if upgradesHas.get("Omniscience" ) ==1 :
+		$Sprite2D/Node2D/Haptic.visible = false
+		$Sprite2D/Node2D/omnis.visible = true
 		#done 
 		pass
 		
@@ -230,7 +235,10 @@ func getUpgrades():
 	if upgradesHas.get("Mucopolysaccharide" ) ==1 :
 		poisonTrail = true
 		poisonDamage +=5
+		$Sprite2D/Node2D/slime.visible = true
 	if upgradesHas.get("ExoSkeleton" ) ==1 :
+		$Sprite2D/Node2D/SnailShell.visible = true
+		$Sprite2D/Node2D/Pulmonatization.visible = false
 		set_scale(Vector2(1.2,1.2))
 		armour += 1
 		speed -= 3
@@ -251,6 +259,8 @@ func getUpgrades():
 	if upgradesHas.get("All Terrain" ) ==1 :
 		speed +=3
 		maxSpeed +=10
+		$Sprite2D/Node2D/Arachnopod.visible = false
+		$Sprite2D/Node2D/BigSpider.visible = true
 	if upgradesHas.get("Apex Predator" ) ==1 :
 		damage +=5
 

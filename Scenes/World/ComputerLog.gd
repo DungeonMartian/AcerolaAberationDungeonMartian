@@ -25,7 +25,7 @@ func _ready():
 	We’ve brought the subject back with us. It’s quite remarkable, DNA tests show that it can modify its genetic code in response to stimuli. Further tests are needed."
 		6:
 			toPrint = "August 5th - Redacted
-	Redacted. Redacted. Redacted. Redacted. Redacted. Redacted. Redacted. Redacted. Redacted."
+	Loud noises Redacted air horn Redacted affection Redacted Redacted pressing b Redacted"
 		7:
 			toPrint = "August 14th - Facility, Undisclosed
 	We’ve called the organism Abe. Abe seems to absorb a sample of any new organic matter that it comes into contact with. It’s unclear what it is entirely capable of."
